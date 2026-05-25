@@ -184,14 +184,16 @@ in {
     (lib.mkIf cfg.neovim {
       programs.neovim = {
         enable       = lib.mkDefault true;
-        extraPlugins = [
-          (pkgs.vimUtils.buildVimPlugin {
-            pname   = "umbra-nvim";
-            version = "0.1";
-            src     = ../ports/neovim;
-          })
+        plugins = [
+          {
+            plugin = pkgs.vimUtils.buildVimPlugin {
+              pname   = "umbra-nvim";
+              version = "0.1";
+              src     = ../ports/neovim;
+            };
+          }
         ];
-        extraLuaConfig = ''
+        initLua = ''
           vim.cmd.colorscheme("umbra")
         '';
       };
