@@ -5,6 +5,7 @@
 let
   cfg = config.umbra;
   p   = palette;
+  a   = umbraLib.toArgb;  # hex → ARGB string for oxwm
 
   # ── Alacritty ───────────────────────────────────────────────────────────────
   alacrittyTheme = {
@@ -54,6 +55,51 @@ let
     *.color15: ${p.ansi.bright.white}
   '';
 
+  # ── oxwm ────────────────────────────────────────────────────────────────────
+  # Only the colour-bearing settings — merge with your existing oxwm config.
+  oxwmColors = {
+    border = {
+      focusedColor   = a p.accents.iris;     # iris on focused window
+      unfocusedColor = a p.backgrounds.bg1;  # dark on unfocused
+    };
+    bar = {
+      # Each scheme is [ fg bg underline-indicator ] in ARGB
+      unoccupiedScheme = [ (a p.foregrounds.fg3) (a p.backgrounds.bg1) (a p.backgrounds.bg1) ];
+      occupiedScheme   = [ (a p.foregrounds.fg1) (a p.backgrounds.bg1) (a p.backgrounds.bg1) ];
+      selectedScheme   = [ (a p.foregrounds.fg0) (a p.accents.iris)    (a p.accents.iris)    ];
+      urgentScheme     = [ (a p.foregrounds.fg0) (a p.semantic.error)  (a p.semantic.error)  ];
+    };
+  };
+
+  # ── dunst ────────────────────────────────────────────────────────────────────
+  dunstColors = {
+    global = {
+      background      = p.backgrounds.bg1;
+      foreground      = p.foregrounds.fg0;
+      frame_color     = p.accents.iris;
+      highlight       = p.accents.iris;
+      separator_color = p.borders.line;
+    };
+    urgency_low = {
+      background  = p.backgrounds.bg0;
+      foreground  = p.foregrounds.fg2;
+      frame_color = p.borders.line;
+      timeout     = 4;
+    };
+    urgency_normal = {
+      background  = p.backgrounds.bg1;
+      foreground  = p.foregrounds.fg0;
+      frame_color = p.accents.iris;
+      timeout     = 8;
+    };
+    urgency_critical = {
+      background  = p.backgrounds.bg1;
+      foreground  = p.foregrounds.fg0;
+      frame_color = p.semantic.error;
+      timeout     = 0;
+    };
+  };
+
 in {
   options.umbra = {
     enable = lib.mkEnableOption "Umbra colorscheme";
@@ -74,6 +120,18 @@ in {
       type    = lib.types.bool;
       default = false;
       description = "Install the Umbra Neovim plugin and set colorscheme.";
+    };
+
+    oxwm = lib.mkOption {
+      type    = lib.types.bool;
+      default = false;
+      description = "Apply Umbra border and bar colours to oxwm.";
+    };
+
+    dunst = lib.mkOption {
+      type    = lib.types.bool;
+      default = false;
+      description = "Apply Umbra colours to dunst notifications.";
     };
   };
 
@@ -107,6 +165,19 @@ in {
         extraLuaConfig = ''
           vim.cmd.colorscheme("umbra")
         '';
+      };
+    })
+
+    # ── oxwm ──────────────────────────────────────────────────────────────────
+    (lib.mkIf cfg.oxwm {
+      programs.oxwm.settings = oxwmColors;
+    })
+
+    # ── dunst ─────────────────────────────────────────────────────────────────
+    (lib.mkIf cfg.dunst {
+      services.dunst = {
+        enable   = lib.mkDefault true;
+        settings = dunstColors;
       };
     })
 

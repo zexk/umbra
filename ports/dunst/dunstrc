@@ -1,0 +1,45 @@
+# Umbra — dunst colorscheme
+# Drop into ~/.config/dunst/dunstrc or merge with your existing config.
+# Non-colour options are left at dunst defaults — adjust to taste.
+
+[global]
+    # ── Colours ─────────────────────────────────────────────────────────────
+    background   = "#181327"
+    foreground   = "#ece6f7"
+    frame_color  = "#b48cff"
+    highlight    = "#b48cff"
+    separator_color = "#2a2240"
+
+    # Tinted progress bar using iris accent
+    progress_bar                = true
+    progress_bar_height         = 3
+    progress_bar_frame_width    = 0
+    progress_bar_min_width      = 150
+    progress_bar_max_width      = 300
+    progress_bar_corner_radius  = 0
+
+    # ── Layout hints (non-colour, adjust freely) ─────────────────────────────
+    corner_radius  = 0
+    frame_width    = 1
+    separator_height = 1
+    padding        = 8
+    horizontal_padding = 10
+    gap_size       = 4
+
+[urgency_low]
+    background  = "#100c1c"
+    foreground  = "#9a8db8"
+    frame_color = "#2a2240"
+    timeout     = 4
+
+[urgency_normal]
+    background  = "#181327"
+    foreground  = "#ece6f7"
+    frame_color = "#b48cff"
+    timeout     = 8
+
+[urgency_critical]
+    background  = "#181327"
+    foreground  = "#ece6f7"
+    frame_color = "#e26a7a"
+    timeout     = 0

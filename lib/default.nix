@@ -41,6 +41,10 @@ in rec {
   # Strip leading '#' — some config formats want bare hex.
   stripHash = s: builtins.substring 1 (builtins.stringLength s - 1) s;
 
+  # ARGB string required by oxwm (full opacity assumed).
+  # "#b48cff" → "ffb48cff"
+  toArgb = hex: "ff" + stripHash hex;
+
   # Build a substitution context from `flat` — pass to builtins.replaceStrings
   # or a mustache-style renderer to stamp out port templates.
   templateCtx = builtins.mapAttrs (_: stripHash) flat;
