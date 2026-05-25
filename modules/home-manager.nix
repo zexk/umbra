@@ -171,8 +171,7 @@ in {
     (lib.mkIf (cfg.terminal == "alacritty") {
       programs.alacritty = {
         enable = lib.mkDefault true;
-        settings.import = lib.mkDefault [];
-        settings = alacrittyTheme;
+        settings = alacrittyTheme // { import = lib.mkDefault []; };
       };
     })
 
