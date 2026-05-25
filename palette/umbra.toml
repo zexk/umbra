@@ -1,0 +1,79 @@
+# Umbra — dark purple colorscheme
+# Canonical palette. All ports and modules source from here.
+
+[meta]
+name        = "Umbra"
+variant     = "dark"
+version     = "0.1"
+description = "A dark, deep-purple colour scheme built terminal-first"
+
+# ── Backgrounds ──────────────────────────────────────────────────────────────
+# Six-step ramp from deepest void to active-surface highlight.
+[backgrounds]
+bg0 = "#100c1c"   # base / void
+bg1 = "#181327"   # window background
+bg2 = "#221a35"   # panel / sidebar
+bg3 = "#2c2244"   # card / hover
+bg4 = "#392c56"   # selection / active
+bg5 = "#4a3a6e"   # border bright
+
+# ── Foregrounds ───────────────────────────────────────────────────────────────
+[foregrounds]
+fg0 = "#ece6f7"   # primary text
+fg1 = "#c8bce0"   # secondary text
+fg2 = "#9a8db8"   # muted
+fg3 = "#6e6189"   # comment / disabled
+
+# ── Borders ───────────────────────────────────────────────────────────────────
+[borders]
+line      = "#2a2240"
+line_soft = "#1f1830"
+
+# ── Accents ───────────────────────────────────────────────────────────────────
+# All tuned to ~OKLCH chroma 0.18 so they read as one family.
+# Shift hue to extend; adjust chroma only when intentionally louder/quieter.
+[accents]
+iris      = "#b48cff"   # primary purple — prompts, focus, selected items
+iris_soft = "#8c6dd1"   # hover state of iris, links
+mauve     = "#d49bff"   # highlight — numbers, constants, pulls
+magenta   = "#e26ad1"   # secondary — operators, keymaps, pizzazz
+
+# ── ANSI 16 ───────────────────────────────────────────────────────────────────
+[ansi]
+black   = "#1a1428"
+red     = "#e26a7a"
+green   = "#8fd49b"
+yellow  = "#e8c87a"
+blue    = "#8aa9f0"
+magenta = "#c98aff"
+cyan    = "#7fd2d2"
+white   = "#c8bce0"
+
+[ansi.bright]
+black   = "#3a2f52"
+red     = "#ff8a98"
+green   = "#b0e8b9"
+yellow  = "#f4dc94"
+blue    = "#a9c2ff"
+magenta = "#e0a8ff"
+cyan    = "#a0e6e6"
+white   = "#ece6f7"
+
+# ── Semantic ──────────────────────────────────────────────────────────────────
+[semantic]
+success = "#8fd49b"
+warn    = "#e8c87a"
+error   = "#e26a7a"
+info    = "#8aa9f0"
+
+# ── Syntax tokens ─────────────────────────────────────────────────────────────
+# Reference mapping — port authors should derive from palette, not hardcode.
+[syntax]
+keyword  = "#b48cff"   # iris       — control flow, if, struct, return
+function = "#d49bff"   # mauve      — definitions and call sites
+type     = "#7fd2d2"   # ansi.cyan  — classes, structs, generics
+string   = "#8fd49b"   # ansi.green — literals and templates
+number   = "#e8c87a"   # ansi.yellow — ints, floats, hex literals
+operator = "#e26ad1"   # magenta    — + - = == :: punctuation
+property = "#a9c2ff"   # ansi.bright.blue — struct fields, css props
+comment  = "#6e6189"   # fg3        — low-prominence prose
