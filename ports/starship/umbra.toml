@@ -1,0 +1,29 @@
+# Umbra — starship color reference
+# Merge these settings into your starship.toml, or use via programs.starship.settings.
+
+[directory]
+style = "#b48cff bold"
+
+[git_branch]
+style = "#7fd2d2"
+
+[git_status]
+style          = "#e8c87a"
+conflicted     = "[=](#e26a7a)"
+ahead          = "[⇡${count}](#8aa9f0)"
+behind         = "[⇣${count}](#8aa9f0)"
+diverged       = "[⇕](#e26ad1)"
+untracked      = "[?](#6e6189)"
+stashed        = "[$](#9a8db8)"
+modified       = "[!](#e8c87a)"
+staged         = "[+](#8fd49b)"
+renamed        = "[»](#7fd2d2)"
+deleted        = "[✘](#e26a7a)"
+
+[direnv]
+style = "#e8c87a dimmed"
+
+[character]
+success_symbol = "[❯](#b48cff bold)"
+error_symbol   = "[❯](#e26a7a bold)"
+vimcmd_symbol  = "[❮](#8c6dd1 bold)"
