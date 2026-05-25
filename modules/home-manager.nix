@@ -133,6 +133,12 @@ in {
       default = false;
       description = "Apply Umbra colours to dunst notifications.";
     };
+
+    gtk = lib.mkOption {
+      type    = lib.types.bool;
+      default = false;
+      description = "Install the Umbra GTK3 theme and write GTK4/libadwaita color overrides.";
+    };
   };
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
@@ -178,6 +184,24 @@ in {
       services.dunst = {
         enable   = lib.mkDefault true;
         settings = dunstColors;
+      };
+    })
+
+    # ── GTK ───────────────────────────────────────────────────────────────────
+    (lib.mkIf cfg.gtk {
+      gtk = {
+        enable = lib.mkDefault true;
+        theme  = {
+          name    = "Umbra";
+          package = pkgs.callPackage ../ports/gtk { inherit palette; };
+        };
+      };
+
+      # GTK4 / libadwaita user-level override — written to XDG config directly
+      # because gtk.gtk4.theme is not the mechanism libadwaita uses.
+      xdg.configFile."gtk-4.0/gtk.css" = {
+        source = (pkgs.callPackage ../ports/gtk { inherit palette; })
+          + "/share/themes/Umbra/gtk-4.0/gtk.css";
       };
     })
 

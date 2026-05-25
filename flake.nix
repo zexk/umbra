@@ -33,6 +33,9 @@
         version = "0.1";
         src     = ./ports/neovim;
       };
+
+      # GTK3 theme + GTK4 libadwaita overrides.
+      gtk = pkgs.callPackage ./ports/gtk { inherit palette; };
     });
 
     nixosModules.default =
