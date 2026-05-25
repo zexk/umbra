@@ -76,9 +76,9 @@ let
   '';
 
   # ── GTK3 ───────────────────────────────────────────────────────────────────
-  # Full standalone theme — no Adwaita dependency.
+  # Full standalone theme — no Adwaita dependency, no rounding, no shadows.
   gtk3Css = ''
-    /* Umbra GTK3 theme */
+    /* Umbra GTK3 theme — square, flat, no shadows */
 
     /* ── Palette variables ──────────────────────────────────────────────────── */
     @define-color bg0      ${bg.bg0};
@@ -159,22 +159,28 @@ let
       color: @fg2;
       border-bottom-color: @line_soft;
     }
-    headerbar .title       { font-weight: 500; }
-    headerbar .subtitle    { color: @fg2; font-size: smaller; }
+    headerbar .title    { font-weight: 500; }
+    headerbar .subtitle { color: @fg2; font-size: smaller; }
 
-    /* Window control buttons */
+    /* Window control buttons — square */
     headerbar button.titlebutton {
-      min-width: 22px;
-      min-height: 22px;
+      min-width: 18px;
+      min-height: 18px;
       padding: 0;
-      border-radius: 50%;
-      border: 1px solid alpha(@line, 0.8);
+      border: 1px solid @line;
       background-color: @bg4;
       color: @fg1;
     }
-    headerbar button.titlebutton:hover     { background-color: @bg5; }
-    headerbar button.titlebutton.close     { background-color: @iris; border-color: @iris; color: @bg0; }
-    headerbar button.titlebutton.close:hover { background-color: @mauve; border-color: @mauve; }
+    headerbar button.titlebutton:hover { background-color: @bg5; }
+    headerbar button.titlebutton.close {
+      background-color: @iris;
+      border-color: @iris;
+      color: @bg0;
+    }
+    headerbar button.titlebutton.close:hover {
+      background-color: @mauve;
+      border-color: @mauve;
+    }
 
     /* Headerbar action buttons */
     headerbar button:not(.titlebutton) {
@@ -183,45 +189,53 @@ let
       background-color: @bg3;
       border-color: @line;
     }
-    headerbar button:not(.titlebutton):hover                { background-color: @bg4; }
-    headerbar button:not(.titlebutton).suggested-action     { background-color: @iris; color: @bg0; border-color: @iris; }
+    headerbar button:not(.titlebutton):hover { background-color: @bg4; }
+    headerbar button:not(.titlebutton).suggested-action {
+      background-color: @iris;
+      color: @bg0;
+      border-color: @iris;
+    }
 
     /* ── Paned separator ────────────────────────────────────────────────────── */
     paned > separator { background-color: @line; min-width: 1px; min-height: 1px; }
 
     /* ── Sidebar ────────────────────────────────────────────────────────────── */
-    .sidebar                          { background-color: @bg1; border-right: 1px solid @line; }
-    .sidebar .sidebar-item            { color: @fg1; padding: 6px 12px; }
-    .sidebar .sidebar-item:hover      { background-color: @bg3; color: @fg0; }
-    .sidebar .sidebar-item:selected   { background-color: @bg4; color: @fg0; box-shadow: inset 2px 0 0 @iris; }
+    .sidebar                        { background-color: @bg1; border-right: 1px solid @line; }
+    .sidebar .sidebar-item          { color: @fg1; padding: 6px 12px; }
+    .sidebar .sidebar-item:hover    { background-color: @bg3; color: @fg0; }
+    .sidebar .sidebar-item:selected {
+      background-color: @bg4;
+      color: @fg0;
+      border-left: 2px solid @iris;
+      padding-left: 10px;
+    }
 
     /* ── Label ──────────────────────────────────────────────────────────────── */
-    label                 { color: @fg0; }
+    label               { color: @fg0; }
     label:disabled,
-    label.dim-label       { color: @fg3; }
-    label selection       { background-color: @bg4; color: @fg0; }
+    label.dim-label     { color: @fg3; }
+    label selection     { background-color: @bg4; color: @fg0; }
 
     /* ── Separator ──────────────────────────────────────────────────────────── */
-    separator             { background-color: @line; min-width: 1px; min-height: 1px; }
+    separator           { background-color: @line; min-width: 1px; min-height: 1px; }
 
     /* ── Button ─────────────────────────────────────────────────────────────── */
     button {
       padding: 7px 15px;
       border: 1px solid @line;
-      border-radius: 6px;
       background-color: @bg2;
       color: @fg0;
     }
-    button:hover           { background-color: @bg3; border-color: @bg5; }
+    button:hover        { background-color: @bg3; border-color: @bg5; }
     button:active,
-    button:checked         { background-color: @bg4; border-color: @bg5; }
-    button:focus           { border-color: @iris; }
-    button:disabled        { background-color: @bg1; color: @fg3; border-color: @line_soft; }
+    button:checked      { background-color: @bg4; border-color: @bg5; }
+    button:focus        { border-color: @iris; }
+    button:disabled     { background-color: @bg1; color: @fg3; border-color: @line_soft; }
 
-    button.flat            { border-color: transparent; background-color: transparent; }
-    button.flat:hover      { background-color: @bg3; border-color: transparent; }
+    button.flat         { border-color: transparent; background-color: transparent; }
+    button.flat:hover   { background-color: @bg3; border-color: transparent; }
     button.flat:active,
-    button.flat:checked    { background-color: @bg4; border-color: transparent; }
+    button.flat:checked { background-color: @bg4; border-color: transparent; }
 
     button.suggested-action          { background-color: @iris; color: @bg0; border-color: @iris; }
     button.suggested-action:hover    { background-color: @mauve; border-color: @mauve; }
@@ -238,38 +252,40 @@ let
     spinbutton {
       padding: 6px 10px;
       border: 1px solid @line;
-      border-radius: 6px;
       background-color: @bg0;
       color: @fg0;
       caret-color: @iris;
     }
     entry:focus,
-    spinbutton:focus        { border-color: @iris; }
+    spinbutton:focus     { border-color: @iris; }
     entry:disabled,
-    spinbutton:disabled     { background-color: @bg1; color: @fg3; border-color: @line_soft; }
+    spinbutton:disabled  { background-color: @bg1; color: @fg3; border-color: @line_soft; }
     entry selection,
-    spinbutton selection    { background-color: @bg4; color: @fg0; }
-    entry.error             { border-color: @error; color: @error; }
-    entry.warning           { border-color: @warn; }
-    entry image             { color: @fg3; }
-    entry image:hover       { color: @fg0; }
-    entry placeholder       { color: @fg3; }
-    entry.search            { border-radius: 20px; }
+    spinbutton selection { background-color: @bg4; color: @fg0; }
+    entry.error          { border-color: @error; color: @error; }
+    entry.warning        { border-color: @warn; }
+    entry image          { color: @fg3; }
+    entry image:hover    { color: @fg0; }
+    entry placeholder    { color: @fg3; }
 
     spinbutton button {
-      border: none; border-radius: 0; padding: 0 6px;
-      background-color: transparent; color: @fg2; min-height: 0;
+      border: none;
+      border-radius: 0;
+      padding: 0 6px;
+      background-color: transparent;
+      color: @fg2;
+      min-height: 0;
     }
     spinbutton button:hover { color: @fg0; background-color: @bg2; }
 
     /* ── Text view ──────────────────────────────────────────────────────────── */
-    textview               { background-color: @bg0; color: @fg0; }
-    textview text          { background-color: @bg0; color: @fg0; }
+    textview              { background-color: @bg0; color: @fg0; }
+    textview text         { background-color: @bg0; color: @fg0; }
     textview text selection { background-color: @bg4; color: @fg0; }
-    textview border        { background-color: @bg1; }
+    textview border       { background-color: @bg1; }
 
     /* ── ListBox / FlowBox ──────────────────────────────────────────────────── */
-    list, flowbox          { background-color: @bg0; color: @fg0; }
+    list, flowbox         { background-color: @bg0; color: @fg0; }
     list > row,
     flowbox > flowboxchild { padding: 6px 12px; border-bottom: 1px solid @line_soft; }
     list > row:last-child,
@@ -284,24 +300,31 @@ let
     list > row.activatable:selected       { background-color: @bg4; }
 
     /* ── TreeView ───────────────────────────────────────────────────────────── */
-    treeview.view                 { background-color: @bg0; color: @fg0; }
-    treeview.view:hover           { background-color: @bg2; }
+    treeview.view                { background-color: @bg0; color: @fg0; }
+    treeview.view:hover          { background-color: @bg2; }
     treeview.view:selected,
-    treeview.view:selected:focus  { background-color: @bg4; color: @fg0; }
+    treeview.view:selected:focus { background-color: @bg4; color: @fg0; }
     treeview.view header button {
-      background-color: @bg1; border-bottom: 1px solid @line; color: @fg2;
-      padding: 4px 8px; border-radius: 0; border-left: none; border-top: none;
+      background-color: @bg1;
+      border-bottom: 1px solid @line;
+      color: @fg2;
+      padding: 4px 8px;
+      border-radius: 0;
+      border-left: none;
+      border-top: none;
       border-right: 1px solid @line;
     }
     treeview.view header button:hover { color: @fg0; background-color: @bg2; }
 
     /* ── Scrollbar ──────────────────────────────────────────────────────────── */
-    scrollbar              { background-color: @bg1; border: none; }
-    scrollbar.vertical     { border-left: 1px solid @line_soft; }
-    scrollbar.horizontal   { border-top: 1px solid @line_soft; }
+    scrollbar            { background-color: @bg1; border: none; }
+    scrollbar.vertical   { border-left: 1px solid @line_soft; }
+    scrollbar.horizontal { border-top: 1px solid @line_soft; }
     scrollbar slider {
-      background-color: @bg5; border-radius: 9999px;
-      min-width: 6px; min-height: 6px; margin: 3px;
+      background-color: @bg5;
+      min-width: 6px;
+      min-height: 6px;
+      margin: 3px;
     }
     scrollbar slider:hover  { background-color: @fg3; }
     scrollbar slider:active { background-color: @iris; }
@@ -310,48 +333,49 @@ let
     /* ── Notebook (tabs) ────────────────────────────────────────────────────── */
     notebook > header              { background-color: @bg1; border-bottom: 1px solid @line; padding: 0; }
     notebook > header > tabs > tab {
-      padding: 8px 16px; color: @fg2;
-      border: none; border-bottom: 2px solid transparent;
-      background-color: transparent; margin-right: 2px;
+      padding: 8px 16px;
+      color: @fg2;
+      border: none;
+      border-bottom: 2px solid transparent;
+      background-color: transparent;
+      margin-right: 2px;
     }
     notebook > header > tabs > tab:hover   { color: @fg0; background-color: @bg2; }
     notebook > header > tabs > tab:checked { color: @iris; border-bottom-color: @iris; background-color: transparent; }
     notebook > header > tabs > tab button {
-      min-width: 14px; min-height: 14px; padding: 0;
-      border: none; background-color: transparent; color: @fg3;
+      min-width: 14px;
+      min-height: 14px;
+      padding: 0;
+      border: none;
+      background-color: transparent;
+      color: @fg3;
     }
-    notebook > header > tabs > tab button:hover {
-      color: @error; background-color: alpha(@error, 0.1); border-radius: 50%;
-    }
+    notebook > header > tabs > tab button:hover { color: @error; background-color: alpha(@error, 0.1); }
     notebook > stack { background-color: @bg1; }
 
-    /* ── Progress bar ───────────────────────────────────────────────────────── */
-    progressbar trough { background-color: @bg3; border-radius: 9999px; min-height: 6px; }
-    progressbar progress { background-color: @iris; border-radius: 9999px; min-height: 6px; }
-    progressbar.osd trough { background-color: alpha(@bg0, 0.5); }
+    /* ── Progress bar — square ──────────────────────────────────────────────── */
+    progressbar trough  { background-color: @bg3; min-height: 6px; }
+    progressbar progress { background-color: @iris; min-height: 6px; }
+    progressbar.osd trough  { background-color: alpha(@bg0, 0.5); }
     progressbar.osd progress { background-color: @iris; }
 
-    /* ── Scale / slider ─────────────────────────────────────────────────────── */
-    scale trough   { background-color: @bg3; border-radius: 9999px; min-height: 4px; min-width: 4px; }
-    scale highlight { background-color: @iris; border-radius: 9999px; }
-    scale slider {
-      background-color: @iris; border-radius: 50%;
-      min-width: 18px; min-height: 18px;
-      box-shadow: 0 1px 3px alpha(@bg0, 0.5);
-    }
+    /* ── Scale / slider — square ────────────────────────────────────────────── */
+    scale trough    { background-color: @bg3; min-height: 4px; min-width: 4px; }
+    scale highlight { background-color: @iris; }
+    scale slider    { background-color: @iris; min-width: 14px; min-height: 14px; }
     scale slider:hover  { background-color: @mauve; }
     scale slider:active { background-color: @iris_soft; }
     scale marks         { color: @fg3; }
 
-    /* ── Checkbutton / Radiobutton ──────────────────────────────────────────── */
+    /* ── Checkbutton / Radiobutton — square ─────────────────────────────────── */
     checkbutton, radiobutton { color: @fg0; }
     checkbutton check,
     radiobutton radio {
-      background-color: @bg0; border: 1px solid @bg5;
-      min-width: 16px; min-height: 16px;
+      background-color: @bg0;
+      border: 1px solid @bg5;
+      min-width: 16px;
+      min-height: 16px;
     }
-    checkbutton check                    { border-radius: 4px; }
-    radiobutton radio                    { border-radius: 50%; }
     checkbutton check:hover,
     radiobutton radio:hover              { border-color: @iris; }
     checkbutton check:checked,
@@ -362,29 +386,35 @@ let
     checkbutton:disabled check,
     radiobutton:disabled radio           { border-color: @line; background-color: @bg1; }
 
-    /* ── Switch ─────────────────────────────────────────────────────────────── */
+    /* ── Switch — square ────────────────────────────────────────────────────── */
     switch {
-      border-radius: 9999px; background-color: @bg3;
-      border: 1px solid @line; min-width: 40px; min-height: 20px;
+      background-color: @bg3;
+      border: 1px solid @line;
+      min-width: 36px;
+      min-height: 18px;
     }
-    switch:checked               { background-color: @iris; border-color: @iris; }
-    switch:hover                 { border-color: @bg5; }
-    switch:checked:hover         { background-color: @mauve; border-color: @mauve; }
+    switch:checked       { background-color: @iris; border-color: @iris; }
+    switch:hover         { border-color: @bg5; }
+    switch:checked:hover { background-color: @mauve; border-color: @mauve; }
     switch slider {
-      background-color: @fg2; border-radius: 50%;
-      margin: 2px; min-width: 14px; min-height: 14px;
+      background-color: @fg2;
+      margin: 2px;
+      min-width: 12px;
+      min-height: 12px;
     }
-    switch:checked slider        { background-color: @bg0; }
-    switch:disabled              { opacity: 0.5; }
+    switch:checked slider { background-color: @bg0; }
+    switch:disabled       { opacity: 0.5; }
 
     /* ── Combobox ───────────────────────────────────────────────────────────── */
-    combobox button             { padding: 6px 10px; }
-    combobox button arrow       { color: @fg2; min-width: 16px; }
+    combobox button       { padding: 6px 10px; }
+    combobox button arrow { color: @fg2; min-width: 16px; }
 
-    /* ── Menu ───────────────────────────────────────────────────────────────── */
+    /* ── Menu — square, no shadow ───────────────────────────────────────────── */
     menu, .menu, .context-menu {
-      padding: 4px 0; background-color: @bg2; border: 1px solid @line;
-      border-radius: 8px; box-shadow: 0 8px 24px alpha(@bg0, 0.5); color: @fg0;
+      padding: 4px 0;
+      background-color: @bg2;
+      border: 1px solid @line;
+      color: @fg0;
     }
     menu > arrow, .menu > arrow  { background-color: @bg2; color: @fg2; min-height: 16px; min-width: 16px; }
     menu > arrow:hover, .menu > arrow:hover { background-color: @bg3; }
@@ -395,39 +425,47 @@ let
     separator.menuitem,
     menuitem separator           { background-color: @line; min-height: 1px; margin: 4px 0; }
 
-    menubar                      { background-color: @bg2; color: @fg1; border-bottom: 1px solid @line; padding: 0; }
-    menubar > menuitem           { padding: 6px 12px; }
-    menubar > menuitem:hover     { background-color: @bg4; color: @fg0; }
+    menubar                  { background-color: @bg2; color: @fg1; border-bottom: 1px solid @line; padding: 0; }
+    menubar > menuitem       { padding: 6px 12px; }
+    menubar > menuitem:hover { background-color: @bg4; color: @fg0; }
 
-    /* ── Popover ────────────────────────────────────────────────────────────── */
+    /* ── Popover — square, no shadow ────────────────────────────────────────── */
     popover {
-      background-color: @bg3; border: 1px solid @line; border-radius: 8px;
-      box-shadow: 0 8px 24px alpha(@bg0, 0.5); color: @fg0; padding: 8px;
+      background-color: @bg3;
+      border: 1px solid @line;
+      color: @fg0;
+      padding: 8px;
     }
     popover > * { color: @fg0; }
 
-    /* ── Tooltip ────────────────────────────────────────────────────────────── */
-    tooltip                 { background-color: @bg3; color: @fg0; border: 1px solid @line; border-radius: 4px; padding: 4px 8px; }
-    tooltip label           { color: @fg0; }
+    /* ── Tooltip — square ───────────────────────────────────────────────────── */
+    tooltip       { background-color: @bg3; color: @fg0; border: 1px solid @line; padding: 4px 8px; }
+    tooltip label { color: @fg0; }
 
     /* ── InfoBar (semantic colours) ─────────────────────────────────────────── */
-    infobar                 { border-bottom: 1px solid @line; padding: 8px 12px; }
-    infobar.info            { background-color: alpha(@info, 0.10); color: @info; }
-    infobar.question        { background-color: alpha(@iris, 0.10); color: @iris; }
-    infobar.warning         { background-color: alpha(@warn, 0.10); color: @warn; }
-    infobar.error           { background-color: alpha(@error, 0.10); color: @error; }
+    infobar          { border-bottom: 1px solid @line; padding: 8px 12px; }
+    infobar.info     { background-color: alpha(@info,  0.10); color: @info; }
+    infobar.question { background-color: alpha(@iris,  0.10); color: @iris; }
+    infobar.warning  { background-color: alpha(@warn,  0.10); color: @warn; }
+    infobar.error    { background-color: alpha(@error, 0.10); color: @error; }
 
     /* ── Statusbar ──────────────────────────────────────────────────────────── */
-    statusbar { background-color: @bg2; color: @fg2; font-size: smaller; padding: 2px 8px; border-top: 1px solid @line; }
+    statusbar {
+      background-color: @bg2;
+      color: @fg2;
+      font-size: smaller;
+      padding: 2px 8px;
+      border-top: 1px solid @line;
+    }
 
     /* ── Dialog action area ─────────────────────────────────────────────────── */
     dialog > box > .dialog-action-box { background-color: @bg2; border-top: 1px solid @line; }
 
     /* ── Frame ──────────────────────────────────────────────────────────────── */
-    frame > border { border: 1px solid @line; border-radius: 4px; }
+    frame > border { border: 1px solid @line; }
 
     /* ── Stack switcher ─────────────────────────────────────────────────────── */
-    stackswitcher button         { border-radius: 6px; padding: 6px 12px; }
+    stackswitcher button         { padding: 6px 12px; }
     stackswitcher button:checked { background-color: @bg4; color: @iris; }
 
     /* ── Expander ───────────────────────────────────────────────────────────── */
