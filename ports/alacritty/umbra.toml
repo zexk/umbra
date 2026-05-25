@@ -1,0 +1,69 @@
+# Umbra — Alacritty colorscheme
+# https://alacritty.org/config-alacritty.html
+
+[colors.primary]
+background = "#181327"
+foreground = "#ece6f7"
+dim_foreground = "#9a8db8"
+
+[colors.cursor]
+text   = "#100c1c"
+cursor = "#b48cff"
+
+[colors.vi_mode_cursor]
+text   = "#100c1c"
+cursor = "#d49bff"
+
+[colors.search.matches]
+foreground = "#100c1c"
+background = "#b48cff"
+
+[colors.search.focused_match]
+foreground = "#100c1c"
+background = "#d49bff"
+
+[colors.hints.start]
+foreground = "#100c1c"
+background = "#e8c87a"
+
+[colors.hints.end]
+foreground = "#100c1c"
+background = "#9a8db8"
+
+[colors.selection]
+text       = "CellForeground"
+background = "#392c56"
+
+[colors.footer_bar]
+foreground = "#ece6f7"
+background = "#221a35"
+
+[colors.normal]
+black   = "#1a1428"
+red     = "#e26a7a"
+green   = "#8fd49b"
+yellow  = "#e8c87a"
+blue    = "#8aa9f0"
+magenta = "#c98aff"
+cyan    = "#7fd2d2"
+white   = "#c8bce0"
+
+[colors.bright]
+black   = "#3a2f52"
+red     = "#ff8a98"
+green   = "#b0e8b9"
+yellow  = "#f4dc94"
+blue    = "#a9c2ff"
+magenta = "#e0a8ff"
+cyan    = "#a0e6e6"
+white   = "#ece6f7"
+
+[colors.dim]
+black   = "#100c1c"
+red     = "#8a3f49"
+green   = "#4e7955"
+yellow  = "#8a7648"
+blue    = "#4f6491"
+magenta = "#7a529a"
+cyan    = "#4a7c7c"
+white   = "#6e6189"

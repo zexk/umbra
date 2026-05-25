@@ -26,6 +26,13 @@
         mkdir -p $out/share/umbra
         cp ${./palette/umbra.toml} $out/share/umbra/palette.toml
       '';
+
+      # Neovim plugin — usable as a vim plugin derivation.
+      neovim = pkgs.vimUtils.buildVimPlugin {
+        pname   = "umbra-nvim";
+        version = "0.1";
+        src     = ./ports/neovim;
+      };
     });
 
     nixosModules.default =
