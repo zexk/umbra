@@ -149,6 +149,15 @@ in {
       services.dunst.settings = dunstColors;
     })
 
+    # ── Telegram Desktop ──────────────────────────────────────────────────────
+    # No HM programs.telegram-desktop module exists, so install unconditionally.
+    # Import the theme once via Settings → Chat Settings → Choose from file.
+    # Path: ~/.local/share/TelegramDesktop/themes/umbra.tdesktop-theme
+    {
+      xdg.dataFile."TelegramDesktop/themes/umbra.tdesktop-theme".source =
+        pkgs.callPackage ../ports/telegram { inherit palette; };
+    }
+
     # ── GTK ───────────────────────────────────────────────────────────────────
     (lib.mkIf config.gtk.enable {
       gtk.theme = {

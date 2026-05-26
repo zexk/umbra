@@ -39,6 +39,9 @@
 
       # dmenu wrapped with Umbra colors as default flags (native, no patch needed).
       dmenu = pkgs.callPackage ./ports/dmenu { inherit palette; };
+
+      # Telegram Desktop .tdesktop-theme file — import once via Settings.
+      telegram = pkgs.callPackage ./ports/telegram { inherit palette; };
     });
 
     nixosModules.default =
