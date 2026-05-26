@@ -465,6 +465,149 @@ let
     }];
   };
 
+  # ── Yazi ──────────────────────────────────────────────────────────────────────
+  yaziTheme = {
+    mgr = {
+      cwd            = { fg = p.accents.iris; };
+      find_keyword   = { fg = p.ansi.yellow;      italic = true; };
+      find_position  = { fg = p.accents.magenta;  italic = true; };
+      symlink_target = { fg = p.accents.iris_soft; italic = true; };
+
+      marker_copied   = { fg = p.ansi.green;    bg = p.ansi.green; };
+      marker_cut      = { fg = p.ansi.red;      bg = p.ansi.red; };
+      marker_marked   = { fg = p.ansi.cyan;     bg = p.ansi.cyan; };
+      marker_selected = { fg = p.accents.iris;  bg = p.accents.iris; };
+
+      count_copied   = { fg = p.backgrounds.bg0; bg = p.ansi.green; };
+      count_cut      = { fg = p.backgrounds.bg0; bg = p.ansi.red; };
+      count_selected = { fg = p.backgrounds.bg0; bg = p.accents.iris; };
+
+      border_symbol = "│";
+      border_style  = { fg = p.backgrounds.bg5; };
+    };
+
+    indicator = {
+      parent  = { fg = p.foregrounds.fg3; };
+      current = { fg = p.accents.iris; };
+      preview = { fg = p.foregrounds.fg3; };
+      padding = { open = " "; close = " "; };
+    };
+
+    tabs = {
+      active    = { fg = p.foregrounds.fg0; bg = p.backgrounds.bg3; bold = true; };
+      inactive  = { fg = p.foregrounds.fg3; bg = p.backgrounds.bg1; };
+      sep_inner = { open = ""; close = ""; };
+      sep_outer = { open = ""; close = ""; };
+    };
+
+    mode = {
+      normal_main = { fg = p.backgrounds.bg0; bg = p.accents.iris;    bold = true; };
+      normal_alt  = { fg = p.foregrounds.fg2; bg = p.backgrounds.bg2; };
+      select_main = { fg = p.backgrounds.bg0; bg = p.accents.mauve;   bold = true; };
+      select_alt  = { fg = p.foregrounds.fg2; bg = p.backgrounds.bg2; };
+      unset_main  = { fg = p.backgrounds.bg0; bg = p.accents.magenta; bold = true; };
+      unset_alt   = { fg = p.foregrounds.fg2; bg = p.backgrounds.bg2; };
+    };
+
+    status = {
+      overall   = { fg = p.foregrounds.fg2; bg = p.backgrounds.bg0; };
+      sep_left  = { open = ""; close = ""; };
+      sep_right = { open = ""; close = ""; };
+
+      perm_type  = { fg = p.accents.iris_soft; };
+      perm_read  = { fg = p.ansi.green; };
+      perm_write = { fg = p.ansi.yellow; };
+      perm_exec  = { fg = p.accents.mauve; };
+      perm_sep   = { fg = p.foregrounds.fg3; };
+
+      progress_label  = { fg = p.foregrounds.fg0; bold = true; };
+      progress_normal = { fg = p.accents.iris;   bg = p.backgrounds.bg0; };
+      progress_error  = { fg = p.semantic.error; bg = p.backgrounds.bg0; };
+    };
+
+    which = {
+      cols            = 3;
+      mask            = { bg = p.backgrounds.bg0; };
+      cand            = { fg = p.accents.iris; };
+      rest            = { fg = p.foregrounds.fg3; };
+      desc            = { fg = p.accents.mauve; };
+      separator       = "  ";
+      separator_style = { fg = p.foregrounds.fg3; };
+    };
+
+    confirm = {
+      border     = { fg = p.accents.iris; };
+      title      = { fg = p.foregrounds.fg0; bold = true; };
+      body       = { fg = p.foregrounds.fg0; };
+      list       = { fg = p.foregrounds.fg1; };
+      btn_yes    = { fg = p.backgrounds.bg0; bg = p.accents.iris;    bold = true; };
+      btn_no     = { fg = p.foregrounds.fg1; bg = p.backgrounds.bg2; };
+      btn_labels = [ "Yes" "No" ];
+    };
+
+    spot = {
+      border   = { fg = p.accents.iris; };
+      title    = { fg = p.foregrounds.fg0; };
+      tbl_col  = { fg = p.accents.iris;    bold = true; };
+      tbl_cell = { fg = p.foregrounds.fg0; };
+    };
+
+    notify = {
+      title_info  = { fg = p.semantic.info; };
+      title_warn  = { fg = p.semantic.warn; };
+      title_error = { fg = p.semantic.error; };
+    };
+
+    pick = {
+      border   = { fg = p.accents.iris; };
+      active   = { fg = p.backgrounds.bg0; bg = p.accents.iris; };
+      inactive = { fg = p.foregrounds.fg1; };
+    };
+
+    input = {
+      border   = { fg = p.accents.iris; };
+      title    = { fg = p.foregrounds.fg0; };
+      value    = { fg = p.foregrounds.fg0; };
+      selected = { reversed = true; };
+    };
+
+    cmp = {
+      border   = { fg = p.accents.iris; };
+      active   = { fg = p.backgrounds.bg0; bg = p.accents.iris; };
+      inactive = { fg = p.foregrounds.fg1; };
+    };
+
+    tasks = {
+      border  = { fg = p.accents.iris; };
+      title   = { fg = p.foregrounds.fg0; };
+      hovered = { underline = true; };
+    };
+
+    help = {
+      on      = { fg = p.accents.iris; };
+      run     = { fg = p.accents.mauve; };
+      desc    = { fg = p.foregrounds.fg2; };
+      hovered = { bg = p.backgrounds.bg3; bold = true; };
+      footer  = { fg = p.backgrounds.bg0; bg = p.foregrounds.fg2; };
+    };
+
+    filetype.rules = [
+      { mime = "image/*";               fg = p.ansi.cyan; }
+      { mime = "{audio,video}/*";       fg = p.accents.mauve; }
+      { mime = "application/zip";       fg = p.accents.magenta; }
+      { mime = "application/gzip";      fg = p.accents.magenta; }
+      { mime = "application/x-bzip*";   fg = p.accents.magenta; }
+      { mime = "application/x-7z*";     fg = p.accents.magenta; }
+      { mime = "application/x-tar";     fg = p.accents.magenta; }
+      { mime = "application/x-rar*";    fg = p.accents.magenta; }
+      { mime = "application/x-zstd";    fg = p.accents.magenta; }
+      { mime = "application/pdf";       fg = p.ansi.bright.red; }
+      { url = "*"; is = "exec";         fg = p.ansi.bright.green; }
+      { url = "*"; is = "orphan";       fg = p.semantic.error; }
+      { url = "*/";                     fg = p.accents.iris; }
+    ];
+  };
+
 in {
   options.umbra.enable = lib.mkEnableOption "Umbra colorscheme";
 
@@ -655,6 +798,11 @@ in {
         mode = "dark";
         dark = "Umbra";
       };
+    })
+
+    # ── Yazi ──────────────────────────────────────────────────────────────────
+    (lib.mkIf config.programs.yazi.enable {
+      programs.yazi.theme = yaziTheme;
     })
 
   ]);
