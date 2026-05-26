@@ -112,23 +112,19 @@ in {
     })
 
     # ── Neovim ────────────────────────────────────────────────────────────────
-    # Uses configure.packages (compatible with the myVimPackage.start style).
-    # "umbra" is a distinct package group — merges cleanly alongside the user's
-    # own group. A tiny auto-sourced plugin activates the colorscheme so we
-    # never touch customRC / customLuaRC.
+    # programs.neovim.plugins and initLua are home-manager-specific options.
+    # For NixOS-managed neovim (configure.packages style) use nixosModules.default.
     (lib.mkIf config.programs.neovim.enable {
-      programs.neovim.configure.packages.umbra.start =
-        let
-          colorscheme = pkgs.vimUtils.buildVimPlugin {
+      programs.neovim = {
+        plugins = [{
+          plugin = pkgs.vimUtils.buildVimPlugin {
             pname   = "umbra-nvim";
             version = "0.1";
             src     = ../ports/neovim;
           };
-          # plugin/*.lua files are auto-sourced; colorscheme is listed first so
-          # its colors/ directory is on runtimepath before this fires.
-          activate = pkgs.writeTextDir "plugin/umbra-activate.lua"
-            "vim.cmd.colorscheme('umbra')";
-        in [ colorscheme activate ];
+        }];
+        initLua = "vim.cmd.colorscheme('umbra')";
+      };
     })
 
     # ── oxwm ──────────────────────────────────────────────────────────────────
