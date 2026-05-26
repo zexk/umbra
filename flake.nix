@@ -46,6 +46,9 @@
       # Chromium / Chrome unpacked theme extension — load via chrome://extensions.
       chromium = pkgs.callPackage ./ports/chromium { inherit palette; };
 
+      # Firefox WebExtensions theme — load via about:debugging or pack as .xpi.
+      firefox = pkgs.callPackage ./ports/firefox { inherit palette; };
+
       # Vesktop / Vencord .theme.css file.
       discord = pkgs.callPackage ./ports/discord { inherit palette; };
 
