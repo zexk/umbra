@@ -857,7 +857,15 @@ in {
     # Guard with ? because oxwm is a non-standard HM module; accessing an
     # undeclared option would be a hard eval error.
     (lib.mkIf (config.programs ? oxwm && config.programs.oxwm.enable) {
-      programs.oxwm.settings = oxwmColors;
+      programs.oxwm.settings = oxwmColors // {
+        bar = oxwmColors.bar // {
+          unoccupiedScheme = lib.mkDefault oxwmColors.bar.unoccupiedScheme;
+          occupiedScheme   = lib.mkDefault oxwmColors.bar.occupiedScheme;
+          selectedScheme   = lib.mkDefault oxwmColors.bar.selectedScheme;
+          urgentScheme     = lib.mkDefault oxwmColors.bar.urgentScheme;
+          blocks           = lib.mkDefault oxwmColors.bar.blocks;
+        };
+      };
     })
 
     # ── dunst ─────────────────────────────────────────────────────────────────
