@@ -57,6 +57,12 @@
 
       # btop resource monitor theme.
       btop = pkgs.callPackage ./ports/btop { inherit palette; };
+
+      # Vimium-C custom CSS — paste into extension options.
+      vimium-c = pkgs.callPackage ./ports/vimium-c { inherit palette; };
+
+      # Dark Reader settings JSON — import via extension popup → Manage Settings.
+      dark-reader = pkgs.callPackage ./ports/dark-reader { inherit palette; };
     });
 
     nixosModules.default =

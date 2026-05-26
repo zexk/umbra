@@ -1073,6 +1073,22 @@ in {
         pkgs.callPackage ../ports/firefox { inherit palette; };
     })
 
+    # ── Vimium-C ──────────────────────────────────────────────────────────────
+    # No HM API for extension settings; installed to ~/.local/share/umbra/vimium-c.css.
+    # Paste into: Vimium-C options → Advanced → Custom CSS for Vimium UI.
+    {
+      xdg.dataFile."umbra/vimium-c.css".source =
+        pkgs.callPackage ../ports/vimium-c { inherit palette; };
+    }
+
+    # ── Dark Reader ───────────────────────────────────────────────────────────
+    # No HM API for extension settings; installed to ~/.local/share/umbra/dark-reader.json.
+    # Import via: Dark Reader popup → gear icon → Manage Settings → Import Settings.
+    {
+      xdg.dataFile."umbra/dark-reader.json".source =
+        pkgs.callPackage ../ports/dark-reader { inherit palette; };
+    }
+
     # ── VSCode ────────────────────────────────────────────────────────────────
     (lib.mkIf config.programs.vscode.enable {
       programs.vscode.profiles.default.extensions = [ umbraVscodeExt ];
