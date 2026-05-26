@@ -76,32 +76,8 @@ let
       occupiedScheme   = [ (s p.foregrounds.fg1) (s p.backgrounds.bg1) (s p.backgrounds.bg1) ];
       selectedScheme   = [ (s p.foregrounds.fg0) (s p.accents.iris)    (s p.accents.iris)    ];
       urgentScheme     = [ (s p.foregrounds.fg0) (s p.semantic.error)  (s p.semantic.error)  ];
-      # Blocks: color is bare 6-char hex (hm.nix prepends #).
-      # RAM placeholders: {used}, {total}, {percent}, {} (= {used}).
-      blocks = [
-        {
-          kind      = "ram";
-          format    = "MEM {used}/{total}G";
-          interval  = 5;
-          color     = s p.accents.iris;
-          underline = false;
-        }
-        {
-          kind      = "static";
-          text      = "  ";
-          interval  = 999999;
-          color     = s p.foregrounds.fg3;
-          underline = false;
-        }
-        {
-          kind        = "datetime";
-          format      = "{}";
-          date_format = "%a %b %e  %H:%M";
-          interval    = 60;
-          color       = s p.foregrounds.fg1;
-          underline   = false;
-        }
-      ];
+      # blocks intentionally omitted — listOf options concatenate across modules;
+      # define bar.blocks in your own oxwm config using palette colors from umbra.lib.
     };
   };
 
@@ -857,15 +833,7 @@ in {
     # Guard with ? because oxwm is a non-standard HM module; accessing an
     # undeclared option would be a hard eval error.
     (lib.mkIf (config.programs ? oxwm && config.programs.oxwm.enable) {
-      programs.oxwm.settings = oxwmColors // {
-        bar = oxwmColors.bar // {
-          unoccupiedScheme = lib.mkDefault oxwmColors.bar.unoccupiedScheme;
-          occupiedScheme   = lib.mkDefault oxwmColors.bar.occupiedScheme;
-          selectedScheme   = lib.mkDefault oxwmColors.bar.selectedScheme;
-          urgentScheme     = lib.mkDefault oxwmColors.bar.urgentScheme;
-          blocks           = lib.mkDefault oxwmColors.bar.blocks;
-        };
-      };
+      programs.oxwm.settings = oxwmColors;
     })
 
     # ── dunst ─────────────────────────────────────────────────────────────────
