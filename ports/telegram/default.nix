@@ -3,7 +3,7 @@
 let
   p = palette;
 
-  themeContent = ''
+  colorsContent = ''
     // Umbra — Telegram Desktop Theme (v0.2)
     // Auto-generated from the Umbra palette. Do not edit by hand.
     // Import via Settings → Chat Settings → Choose from file.
@@ -484,4 +484,12 @@ let
     sideBarBadgeFg:              umFg0;
   '';
 
-in pkgs.writeText "umbra.tdesktop-theme" themeContent
+  colors = pkgs.writeText "colors.tdesktop-theme" colorsContent;
+
+in pkgs.runCommand "umbra.tdesktop-theme"
+  { nativeBuildInputs = [ pkgs.imagemagick pkgs.zip ]; }
+  ''
+    convert -size 4x4 xc:"${p.backgrounds.bg0}" background.png
+    cp ${colors} colors.tdesktop-theme
+    zip $out colors.tdesktop-theme background.png
+  ''
