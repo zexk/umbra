@@ -76,6 +76,32 @@ let
       occupiedScheme   = [ (s p.foregrounds.fg1) (s p.backgrounds.bg1) (s p.backgrounds.bg1) ];
       selectedScheme   = [ (s p.foregrounds.fg0) (s p.accents.iris)    (s p.accents.iris)    ];
       urgentScheme     = [ (s p.foregrounds.fg0) (s p.semantic.error)  (s p.semantic.error)  ];
+      # Blocks: color is bare 6-char hex (hm.nix prepends #).
+      # RAM placeholders: {used}, {total}, {percent}, {} (= {used}).
+      blocks = [
+        {
+          kind      = "ram";
+          format    = "MEM {used}/{total}G";
+          interval  = 5;
+          color     = s p.accents.iris;
+          underline = false;
+        }
+        {
+          kind      = "static";
+          text      = "  ";
+          interval  = 999999;
+          color     = s p.foregrounds.fg3;
+          underline = false;
+        }
+        {
+          kind        = "datetime";
+          format      = "{}";
+          date_format = "%a %b %e  %H:%M";
+          interval    = 60;
+          color       = s p.foregrounds.fg1;
+          underline   = false;
+        }
+      ];
     };
   };
 
