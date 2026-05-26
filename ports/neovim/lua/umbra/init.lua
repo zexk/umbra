@@ -12,4 +12,6 @@ function M.load()
   require("umbra.highlights").load()
 end
 
+M.setup = M.load
+
 return M
