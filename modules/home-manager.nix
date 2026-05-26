@@ -6,6 +6,7 @@ let
   cfg = config.umbra;
   p   = palette;
   s   = umbraLib.stripHash;  # bare 6-char hex — oxwm hm module adds # itself
+  a   = umbraLib.toArgb;    # ffRRGGBB — oxwm border: picom needs ARGB opacity prefix
 
   # ── Alacritty ───────────────────────────────────────────────────────────────
   alacrittyColors = {
@@ -67,8 +68,8 @@ let
   # ── oxwm ────────────────────────────────────────────────────────────────────
   oxwmColors = {
     border = {
-      focusedColor   = s p.accents.iris;
-      unfocusedColor = s p.backgrounds.bg1;
+      focusedColor   = a p.accents.iris;
+      unfocusedColor = a p.backgrounds.bg1;
     };
     bar = {
       unoccupiedScheme = [ (s p.foregrounds.fg3) (s p.backgrounds.bg1) (s p.backgrounds.bg1) ];
