@@ -14,7 +14,7 @@ let
       grayscale  = 0;
       sepia      = 0;
       useFont    = false;
-      fontFamily = "";
+      fontFamily = "sans-serif";
       textStroke = 0;
       engine     = "dynamicTheme";
       stylesheet = "";

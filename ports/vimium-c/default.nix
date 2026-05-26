@@ -8,33 +8,28 @@ in pkgs.writeText "umbra-vimium-c.css" ''
 
   /* Hint markers */
   .vimiumHintMarker {
-    background-color: ${p.backgrounds.bg2};
-    border: 1px solid ${p.borders.line};
-    padding: 1px 3px;
-    font-weight: bold;
+    background-color: ${p.backgrounds.bg2} !important;
+    border: 1px solid ${p.borders.line} !important;
+    padding: 1px 3px !important;
+    font-weight: bold !important;
   }
-  .vimiumHintMarker > .keyLabel {
-    color: ${p.foregrounds.fg0};
+  .vimiumHintMarker > span {
+    color: ${p.foregrounds.fg0} !important;
   }
-  .vimiumHintMarker > .typedKeyLabel {
-    color: ${p.accents.iris};
-  }
-  .vimiumHintMarker.matchingHint .keyLabel {
-    color: ${p.foregrounds.fg3};
+  .vimiumHintMarker.matched > span,
+  .vimiumHintMarker.matchedHint > span {
+    color: ${p.accents.iris} !important;
   }
 
   /* HUD (mode indicator / find bar) */
   #vimiumHUD {
-    background-color: ${p.backgrounds.bg1};
-    color: ${p.foregrounds.fg1};
-    border-top: 1px solid ${p.borders.line};
-  }
-  #vimiumHUD .HUDcontainer {
-    background-color: ${p.backgrounds.bg1};
+    background-color: ${p.backgrounds.bg1} !important;
+    color: ${p.foregrounds.fg1} !important;
+    border-top: 1px solid ${p.borders.line} !important;
   }
   #vimiumHUD input {
-    background-color: ${p.backgrounds.bg0};
-    color: ${p.foregrounds.fg0};
-    border: 1px solid ${p.borders.line};
+    background-color: ${p.backgrounds.bg0} !important;
+    color: ${p.foregrounds.fg0} !important;
+    border: 1px solid ${p.borders.line} !important;
   }
 ''
