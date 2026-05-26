@@ -5,35 +5,45 @@ let
   fmt = pkgs.formats.json { };
 
   settings = {
-    enabled   = true;
-    fetchNews = false;
+    enabled              = true;
+    applyToListedOnly    = false;
+    changeBrowserTheme   = false;
+    enableForPDF         = true;
+    enableForProtectedPages = false;
+    notifyOfNews         = false;
+    previewNewDesign     = true;
+    syncSettings         = false;
+    syncSitesFixes       = false;
+    automation = {
+      enabled  = false;
+      mode     = "system";
+      behavior = "OnOff";
+    };
+    location = { latitude = null; longitude = null; };
+    time     = { activation = "18:00"; deactivation = "9:00"; };
     theme = {
-      mode       = 1;       # 0 = light, 1 = dark
+      mode       = 1;
       brightness = 100;
       contrast   = 100;
       grayscale  = 0;
       sepia      = 0;
       useFont    = false;
-      fontFamily = "sans-serif";
+      fontFamily = "Helvetica Neue";
       textStroke = 0;
       engine     = "dynamicTheme";
       stylesheet = "";
 
       darkSchemeBackgroundColor  = p.backgrounds.bg0;
-      darkSchemeFontColor        = p.foregrounds.fg0;
+      darkSchemeTextColor        = p.foregrounds.fg0;
       lightSchemeBackgroundColor = p.foregrounds.fg0;
-      lightSchemeFontColor       = p.backgrounds.bg0;
+      lightSchemeTextColor       = p.backgrounds.bg1;
 
-      scrollbarColor     = "";
-      selectionColor     = p.accents.iris;
+      scrollbarColor      = "auto";
+      selectionColor      = p.accents.iris;
       styleSystemControls = true;
-      lightColorScheme   = "Default";
-      darkColorScheme    = "Default";
-      immediateModify    = false;
     };
     siteList         = [ ];
     siteListEnabled  = [ ];
-    siteListDisabled = [ ];
     customThemes     = [ ];
     presets          = [ ];
   };
