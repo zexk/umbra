@@ -22,6 +22,18 @@ in {
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
 
+    # ── TTY / virtual console ────────────────────────────────────────────────
+    {
+      console.colors = map (lib.removePrefix "#") [
+        p.ansi.black          p.ansi.red            p.ansi.green
+        p.ansi.yellow         p.ansi.blue           p.ansi.magenta
+        p.ansi.cyan           p.ansi.white
+        p.ansi.bright.black   p.ansi.bright.red     p.ansi.bright.green
+        p.ansi.bright.yellow  p.ansi.bright.blue    p.ansi.bright.magenta
+        p.ansi.bright.cyan    p.ansi.bright.white
+      ];
+    }
+
     # ── Neovim ──────────────────────────────────────────────────────────────
     # Adds a distinct package group so it merges cleanly alongside the user's
     # own packages.myVimPackage without touching customLuaRC / customRC.
