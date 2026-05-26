@@ -608,6 +608,16 @@ let
     ];
   };
 
+  # ── VSCode / VSCodium ─────────────────────────────────────────────────────────
+  # Wrapped with buildVscodeExtension so HM's programs.vscode.extensions can link it.
+  umbraVscodeExt = pkgs.vscode-utils.buildVscodeExtension {
+    name               = "umbra";
+    vscodeExtPublisher = "umbra";
+    vscodeExtName      = "umbra";
+    vscodeExtVersion   = "1.0.0";
+    src                = pkgs.callPackage ../ports/vscode { inherit palette; };
+  };
+
   # ── Ghostty ───────────────────────────────────────────────────────────────────
   # palette uses listsAsDuplicateKeys — each entry becomes its own palette = N=color line
   ghosttyTheme = {
@@ -1010,6 +1020,34 @@ in {
     # ── Waybar ────────────────────────────────────────────────────────────────
     (lib.mkIf config.programs.waybar.enable {
       programs.waybar.style = waybarcss;
+    })
+
+    # ── Chromium ──────────────────────────────────────────────────────────────
+    # No HM API for unpacked extensions; installed to ~/.local/share/umbra/chromium-theme.
+    # Load via chrome://extensions → Developer mode → Load unpacked.
+    (lib.mkIf config.programs.chromium.enable {
+      xdg.dataFile."umbra/chromium-theme".source =
+        pkgs.callPackage ../ports/chromium { inherit palette; };
+    })
+
+    # ── Firefox ───────────────────────────────────────────────────────────────
+    # No per-profile HM API that fits all setups; installed to ~/.local/share/umbra/firefox-theme.
+    # Load via about:debugging → This Firefox → Load Temporary Add-on → pick manifest.json.
+    (lib.mkIf config.programs.firefox.enable {
+      xdg.dataFile."umbra/firefox-theme".source =
+        pkgs.callPackage ../ports/firefox { inherit palette; };
+    })
+
+    # ── VSCode ────────────────────────────────────────────────────────────────
+    (lib.mkIf config.programs.vscode.enable {
+      programs.vscode.extensions = [ umbraVscodeExt ];
+      programs.vscode.userSettings."workbench.colorTheme" = "Umbra";
+    })
+
+    # ── VSCodium ──────────────────────────────────────────────────────────────
+    (lib.mkIf config.programs.vscodium.enable {
+      programs.vscodium.extensions = [ umbraVscodeExt ];
+      programs.vscodium.userSettings."workbench.colorTheme" = "Umbra";
     })
 
   ]);
