@@ -608,6 +608,185 @@ let
     ];
   };
 
+  # ── Ghostty ───────────────────────────────────────────────────────────────────
+  # palette uses listsAsDuplicateKeys — each entry becomes its own palette = N=color line
+  ghosttyTheme = {
+    background             = p.backgrounds.bg1;
+    foreground             = p.foregrounds.fg0;
+    "cursor-color"         = p.accents.iris;
+    "cursor-text"          = p.backgrounds.bg0;
+    "selection-background" = p.backgrounds.bg4;
+    "selection-foreground" = p.foregrounds.fg0;
+    "split-divider-color"  = p.borders.line;
+    palette = [
+      "0=${p.ansi.black}"          "1=${p.ansi.red}"
+      "2=${p.ansi.green}"          "3=${p.ansi.yellow}"
+      "4=${p.ansi.blue}"           "5=${p.ansi.magenta}"
+      "6=${p.ansi.cyan}"           "7=${p.ansi.white}"
+      "8=${p.ansi.bright.black}"   "9=${p.ansi.bright.red}"
+      "10=${p.ansi.bright.green}"  "11=${p.ansi.bright.yellow}"
+      "12=${p.ansi.bright.blue}"   "13=${p.ansi.bright.magenta}"
+      "14=${p.ansi.bright.cyan}"   "15=${p.ansi.bright.white}"
+    ];
+  };
+
+  # ── Mako ──────────────────────────────────────────────────────────────────────
+  makoSettings = {
+    "background-color" = p.backgrounds.bg1;
+    "text-color"       = p.foregrounds.fg0;
+    "border-color"     = p.accents.iris;
+    "progress-color"   = "over ${p.accents.iris}";
+  };
+
+  # urgency criteria sections — not representable as an attrset, use extraConfig
+  makoExtra = ''
+    [urgency=low]
+    background-color=${p.backgrounds.bg0}
+    text-color=${p.foregrounds.fg2}
+    border-color=${p.borders.line}
+
+    [urgency=critical]
+    background-color=${p.backgrounds.bg1}
+    text-color=${p.foregrounds.fg0}
+    border-color=${p.semantic.error}
+  '';
+
+  # ── Swaylock ──────────────────────────────────────────────────────────────────
+  # color values are bare rrggbb[aa] hex — no # prefix (stripHash); transparent = 00000000
+  swaylockColors = {
+    color                = s p.backgrounds.bg0;
+    "inside-color"       = s p.backgrounds.bg1;
+    "inside-clear-color" = s p.backgrounds.bg1;
+    "inside-ver-color"   = s p.backgrounds.bg2;
+    "inside-wrong-color" = s p.backgrounds.bg1;
+    "ring-color"         = s p.backgrounds.bg5;
+    "ring-clear-color"   = s p.ansi.yellow;
+    "ring-ver-color"     = s p.accents.iris;
+    "ring-wrong-color"   = s p.semantic.error;
+    "line-color"         = "00000000";
+    "line-clear-color"   = "00000000";
+    "line-ver-color"     = "00000000";
+    "line-wrong-color"   = "00000000";
+    "key-hl-color"       = s p.accents.iris;
+    "bs-hl-color"        = s p.semantic.error;
+    "text-color"         = s p.foregrounds.fg0;
+    "text-clear-color"   = s p.foregrounds.fg2;
+    "text-ver-color"     = s p.foregrounds.fg0;
+    "text-wrong-color"   = s p.semantic.error;
+    "separator-color"    = "00000000";
+  };
+
+  # ── Delta ─────────────────────────────────────────────────────────────────────
+  # Reuses the bat Umbra tmTheme for syntax highlighting — requires programs.bat.enable.
+  deltaSettings = {
+    "syntax-theme"                 = "Umbra";
+    "line-numbers"                 = true;
+    "line-numbers-minus-style"     = p.ansi.red;
+    "line-numbers-plus-style"      = p.ansi.green;
+    "line-numbers-zero-style"      = p.foregrounds.fg3;
+    "line-numbers-left-style"      = p.borders.line;
+    "line-numbers-right-style"     = p.borders.line;
+    "file-style"                   = p.accents.iris;
+    "file-decoration-style"        = "${p.accents.iris} ul";
+    "hunk-header-style"            = "file line-number syntax";
+    "hunk-header-decoration-style" = "${p.backgrounds.bg2} box";
+  };
+
+  # ── Waybar ────────────────────────────────────────────────────────────────────
+  waybarcss = ''
+    * {
+      border: none;
+      border-radius: 0;
+      min-height: 0;
+    }
+
+    window#waybar {
+      background-color: ${p.backgrounds.bg0};
+      color: ${p.foregrounds.fg0};
+    }
+
+    tooltip {
+      background-color: ${p.backgrounds.bg2};
+      border: 1px solid ${p.borders.line};
+      color: ${p.foregrounds.fg0};
+    }
+
+    #workspaces button {
+      padding: 0 8px;
+      background-color: transparent;
+      color: ${p.foregrounds.fg3};
+      border-bottom: 2px solid transparent;
+    }
+
+    #workspaces button.focused,
+    #workspaces button.active {
+      color: ${p.foregrounds.fg0};
+      border-bottom-color: ${p.accents.iris};
+    }
+
+    #workspaces button.urgent {
+      color: ${p.semantic.error};
+      border-bottom-color: ${p.semantic.error};
+    }
+
+    #workspaces button:hover {
+      background-color: ${p.backgrounds.bg2};
+      color: ${p.foregrounds.fg0};
+    }
+
+    #battery,
+    #clock,
+    #cpu,
+    #disk,
+    #idle_inhibitor,
+    #memory,
+    #mode,
+    #network,
+    #pulseaudio,
+    #temperature,
+    #tray,
+    #window,
+    #wireplumber {
+      padding: 0 12px;
+      color: ${p.foregrounds.fg1};
+    }
+
+    #mode {
+      background-color: ${p.accents.iris};
+      color: ${p.backgrounds.bg0};
+    }
+
+    #battery.charging,
+    #battery.plugged {
+      color: ${p.semantic.success};
+    }
+
+    #battery.warning:not(.charging) {
+      color: ${p.semantic.warn};
+    }
+
+    #battery.critical:not(.charging) {
+      color: ${p.semantic.error};
+    }
+
+    #network.disconnected {
+      color: ${p.semantic.error};
+    }
+
+    #temperature.critical {
+      color: ${p.semantic.error};
+    }
+
+    #idle_inhibitor.activated {
+      color: ${p.accents.iris};
+    }
+
+    #pulseaudio.muted,
+    #wireplumber.muted {
+      color: ${p.foregrounds.fg3};
+    }
+  '';
+
 in {
   options.umbra.enable = lib.mkEnableOption "Umbra colorscheme";
 
@@ -803,6 +982,34 @@ in {
     # ── Yazi ──────────────────────────────────────────────────────────────────
     (lib.mkIf config.programs.yazi.enable {
       programs.yazi.theme = yaziTheme;
+    })
+
+    # ── Ghostty ───────────────────────────────────────────────────────────────
+    (lib.mkIf config.programs.ghostty.enable {
+      programs.ghostty.themes.umbra   = ghosttyTheme;
+      programs.ghostty.settings.theme = "umbra";
+    })
+
+    # ── Mako ──────────────────────────────────────────────────────────────────
+    (lib.mkIf config.services.mako.enable {
+      services.mako.settings    = makoSettings;
+      services.mako.extraConfig = makoExtra;
+    })
+
+    # ── Swaylock ──────────────────────────────────────────────────────────────
+    (lib.mkIf config.programs.swaylock.enable {
+      programs.swaylock.settings = swaylockColors;
+    })
+
+    # ── Delta ─────────────────────────────────────────────────────────────────
+    # bat must be enabled so the Umbra tmTheme is present for delta to find.
+    (lib.mkIf (config.programs.git.enable && config.programs.bat.enable) {
+      programs.git.settings."delta" = deltaSettings;
+    })
+
+    # ── Waybar ────────────────────────────────────────────────────────────────
+    (lib.mkIf config.programs.waybar.enable {
+      programs.waybar.style = waybarcss;
     })
 
   ]);
