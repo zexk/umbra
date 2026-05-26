@@ -640,6 +640,7 @@ let
     name               = "umbra";
     vscodeExtPublisher = "umbra";
     vscodeExtName      = "umbra";
+    vscodeExtUniqueId  = "umbra.umbra";
     vscodeExtVersion   = "1.0.0";
     src                = pkgs.callPackage ../ports/vscode { inherit palette; };
   };
