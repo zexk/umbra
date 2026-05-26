@@ -45,6 +45,9 @@
 
       # Vesktop / Vencord .theme.css file.
       discord = pkgs.callPackage ./ports/discord { inherit palette; };
+
+      # btop resource monitor theme.
+      btop = pkgs.callPackage ./ports/btop { inherit palette; };
     });
 
     nixosModules.default =

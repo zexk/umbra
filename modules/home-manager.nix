@@ -149,6 +149,13 @@ in {
       services.dunst.settings = dunstColors;
     })
 
+    # ── btop ──────────────────────────────────────────────────────────────────
+    (lib.mkIf config.programs.btop.enable {
+      xdg.configFile."btop/themes/umbra.theme".source =
+        pkgs.callPackage ../ports/btop { inherit palette; };
+      programs.btop.settings.color_theme = "umbra";
+    })
+
     # ── Vesktop / Vencord ─────────────────────────────────────────────────────
     (lib.mkIf config.programs.vesktop.enable {
       programs.vesktop.vencord.themes."umbra.theme.css" =
