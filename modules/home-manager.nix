@@ -149,6 +149,13 @@ in {
       services.dunst.settings = dunstColors;
     })
 
+    # ── Vesktop / Vencord ─────────────────────────────────────────────────────
+    (lib.mkIf config.programs.vesktop.enable {
+      programs.vesktop.vencord.themes."umbra.theme.css" =
+        pkgs.callPackage ../ports/discord { inherit palette; };
+      programs.vesktop.vencord.settings.enabledThemes = [ "umbra.theme.css" ];
+    })
+
     # ── Telegram Desktop ──────────────────────────────────────────────────────
     # No HM programs.telegram-desktop module exists, so install unconditionally.
     # Import the theme once via Settings → Chat Settings → Choose from file.

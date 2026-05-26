@@ -42,6 +42,9 @@
 
       # Telegram Desktop .tdesktop-theme file — import once via Settings.
       telegram = pkgs.callPackage ./ports/telegram { inherit palette; };
+
+      # Vesktop / Vencord .theme.css file.
+      discord = pkgs.callPackage ./ports/discord { inherit palette; };
     });
 
     nixosModules.default =
