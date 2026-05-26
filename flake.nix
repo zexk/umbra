@@ -43,6 +43,9 @@
       # Telegram Desktop .tdesktop-theme file — import once via Settings.
       telegram = pkgs.callPackage ./ports/telegram { inherit palette; };
 
+      # Chromium / Chrome unpacked theme extension — load via chrome://extensions.
+      chromium = pkgs.callPackage ./ports/chromium { inherit palette; };
+
       # Vesktop / Vencord .theme.css file.
       discord = pkgs.callPackage ./ports/discord { inherit palette; };
 
