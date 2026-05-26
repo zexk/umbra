@@ -71,10 +71,10 @@ function M.load()
     Question       = { fg = p.iris },
 
     -- Diff
-    DiffAdd        = {                   bg = "#1a2e1d" },
-    DiffChange     = {                   bg = "#1e1e34" },
-    DiffDelete     = { fg = p.error,     bg = "#2e1519" },
-    DiffText       = {                   bg = "#2a2a50" },
+    DiffAdd        = {                   bg = "#0e1a10" },
+    DiffChange     = {                   bg = "#0f1522" },
+    DiffDelete     = { fg = p.error,     bg = "#1e0d10" },
+    DiffText       = {                   bg = "#152035" },
     Added          = { fg = p.green },
     Changed        = { fg = p.blue },
     Removed        = { fg = p.error },
@@ -269,10 +269,10 @@ function M.load()
     DiagnosticUnderlineInfo    = { undercurl = true, sp = p.info },
     DiagnosticUnderlineHint    = { undercurl = true, sp = p.iris },
 
-    DiagnosticVirtualTextError = { fg = p.error, bg = "#2a1518", italic = true },
-    DiagnosticVirtualTextWarn  = { fg = p.warn,  bg = "#29230f", italic = true },
-    DiagnosticVirtualTextInfo  = { fg = p.info,  bg = "#121e33", italic = true },
-    DiagnosticVirtualTextHint  = { fg = p.iris,  bg = "#1a1530", italic = true },
+    DiagnosticVirtualTextError = { fg = p.error, bg = "#1c0c0e", italic = true },
+    DiagnosticVirtualTextWarn  = { fg = p.warn,  bg = "#1c160a", italic = true },
+    DiagnosticVirtualTextInfo  = { fg = p.info,  bg = "#0e1820", italic = true },
+    DiagnosticVirtualTextHint  = { fg = p.iris,  bg = "#16091c", italic = true },
 
     DiagnosticSignError        = { fg = p.error },
     DiagnosticSignWarn         = { fg = p.warn },
@@ -370,8 +370,8 @@ function M.load()
     GitSignsAddNr          = { fg = p.green },
     GitSignsChangeNr       = { fg = p.blue },
     GitSignsDeleteNr       = { fg = p.error },
-    GitSignsAddLn          = {              bg = "#1a2e1d" },
-    GitSignsChangeLn       = {              bg = "#1e1e34" },
+    GitSignsAddLn          = {              bg = "#0e1a10" },
+    GitSignsChangeLn       = {              bg = "#0f1522" },
     GitSignsCurrentLineBlame = { fg = p.fg3, italic = true },
 
     -- indent-blankline

@@ -198,8 +198,8 @@ in {
         git_status = {
           style      = p.ansi.yellow;
           conflicted = "[=](${p.semantic.error})";
-          ahead      = "[⇡$\\{count\\}](${p.ansi.blue})";
-          behind     = "[⇣$\\{count\\}](${p.ansi.blue})";
+          ahead      = "[⇡\${count}](${p.ansi.blue})";
+          behind     = "[⇣\${count}](${p.ansi.blue})";
           diverged   = "[⇕](${p.accents.magenta})";
           untracked  = "[?](${p.foregrounds.fg3})";
           stashed    = "[$](${p.foregrounds.fg2})";

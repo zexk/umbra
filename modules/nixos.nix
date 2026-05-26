@@ -12,11 +12,6 @@ let
     src     = ../ports/neovim;
   };
 
-  # Neovim auto-sources plugin/*.lua from every runtimepath entry.
-  # colorscheme is listed first so its colors/ dir is available when this fires.
-  activate = pkgs.writeTextDir "plugin/umbra-activate.lua"
-    "vim.cmd.colorscheme('umbra')";
-
 in {
   options.umbra.enable = lib.mkEnableOption "Umbra colorscheme";
 
@@ -35,10 +30,15 @@ in {
     }
 
     # ── Neovim ──────────────────────────────────────────────────────────────
-    # Adds a distinct package group so it merges cleanly alongside the user's
-    # own packages.myVimPackage without touching customLuaRC / customRC.
+    # Distinct package group — merges alongside myVimPackage without conflict.
+    # customRC (VimScript) is separate from the user's customLuaRC (Lua) so
+    # both definitions coexist in the types.attrs merge. It runs after
+    # packloadall, so the plugin is already in runtimepath when it fires.
     (lib.mkIf config.programs.neovim.enable {
-      programs.neovim.configure.packages.umbra.start = [ colorscheme activate ];
+      programs.neovim.configure = {
+        packages.umbra.start = [ colorscheme ];
+        customRC = "colorscheme umbra";
+      };
     })
 
   ]);
