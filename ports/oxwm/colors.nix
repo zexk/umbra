@@ -1,41 +1,37 @@
-# Umbra — oxwm colour reference
-# All values are ARGB 8-digit hex strings (no leading #), full opacity (ff).
-# Usage: import this file and pass the attrset as `c` in your oxwm settings.
-#
-# Example:
-#   let c = import <umbra/ports/oxwm/colors.nix>; in
-#   programs.oxwm.settings.border.focusedColor = c.iris;
+# Umbra — oxwm colour reference (v0.2)
+# Bare 6-char hex strings — the oxwm hm module adds '#' itself.
+# For direct Lua use prefix with '#': border.set_focused_color("#b07bbc")
 
 {
   # ── Backgrounds ─────────────────────────────────────────────────────────────
-  bg0     = "ff100c1c";   # base / void
-  bg1     = "ff181327";   # window background
-  bg2     = "ff221a35";   # panel / sidebar
-  bg3     = "ff2c2244";   # card / hover
-  bg4     = "ff392c56";   # selection / active
-  bg5     = "ff4a3a6e";   # border bright
+  bg0     = "0c040f";
+  bg1     = "160a19";
+  bg2     = "231426";
+  bg3     = "301f34";
+  bg4     = "412d45";
+  bg5     = "553e5a";
 
   # ── Foregrounds ──────────────────────────────────────────────────────────────
-  fg0     = "ffece6f7";   # primary text
-  fg1     = "ffc8bce0";   # secondary text
-  fg2     = "ff9a8db8";   # muted
-  fg3     = "ff6e6189";   # comment / disabled
+  fg0     = "d9d1da";
+  fg1     = "b1a7b3";
+  fg2     = "887b8c";
+  fg3     = "645567";
 
   # ── Accents ──────────────────────────────────────────────────────────────────
-  iris    = "ffb48cff";   # primary purple
-  mauve   = "ffd49bff";   # highlight
-  magenta = "ffe26ad1";   # secondary
+  iris    = "b07bbc";
+  mauve   = "c68fc1";
+  magenta = "b56b8f";
 
   # ── ANSI ─────────────────────────────────────────────────────────────────────
-  red     = "ffe26a7a";
-  green   = "ff8fd49b";
-  yellow  = "ffe8c87a";
-  blue    = "ff8aa9f0";
-  cyan    = "ff7fd2d2";
+  red     = "b97873";
+  green   = "8daf8e";
+  yellow  = "c1a77b";
+  blue    = "6ca0be";
+  cyan    = "7cb0af";
 
   # ── Semantic ─────────────────────────────────────────────────────────────────
-  error   = "ffe26a7a";
-  warn    = "ffe8c87a";
-  info    = "ff8aa9f0";
-  success = "ff8fd49b";
+  error   = "b97873";
+  warn    = "c1a77b";
+  info    = "6ca0be";
+  success = "8daf8e";
 }

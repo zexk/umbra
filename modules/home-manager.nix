@@ -5,7 +5,7 @@
 let
   cfg = config.umbra;
   p   = palette;
-  a   = umbraLib.toArgb;
+  s   = umbraLib.stripHash;  # bare 6-char hex — oxwm hm module adds # itself
 
   # ── Alacritty ───────────────────────────────────────────────────────────────
   alacrittyColors = {
@@ -67,14 +67,14 @@ let
   # ── oxwm ────────────────────────────────────────────────────────────────────
   oxwmColors = {
     border = {
-      focusedColor   = a p.accents.iris;
-      unfocusedColor = a p.backgrounds.bg1;
+      focusedColor   = s p.accents.iris;
+      unfocusedColor = s p.backgrounds.bg1;
     };
     bar = {
-      unoccupiedScheme = [ (a p.foregrounds.fg3) (a p.backgrounds.bg1) (a p.backgrounds.bg1) ];
-      occupiedScheme   = [ (a p.foregrounds.fg1) (a p.backgrounds.bg1) (a p.backgrounds.bg1) ];
-      selectedScheme   = [ (a p.foregrounds.fg0) (a p.accents.iris)    (a p.accents.iris)    ];
-      urgentScheme     = [ (a p.foregrounds.fg0) (a p.semantic.error)  (a p.semantic.error)  ];
+      unoccupiedScheme = [ (s p.foregrounds.fg3) (s p.backgrounds.bg1) (s p.backgrounds.bg1) ];
+      occupiedScheme   = [ (s p.foregrounds.fg1) (s p.backgrounds.bg1) (s p.backgrounds.bg1) ];
+      selectedScheme   = [ (s p.foregrounds.fg0) (s p.accents.iris)    (s p.accents.iris)    ];
+      urgentScheme     = [ (s p.foregrounds.fg0) (s p.semantic.error)  (s p.semantic.error)  ];
     };
   };
 
