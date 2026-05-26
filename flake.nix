@@ -49,6 +49,9 @@
       # Firefox WebExtensions theme — load via about:debugging or pack as .xpi.
       firefox = pkgs.callPackage ./ports/firefox { inherit palette; };
 
+      # VSCode / VSCodium theme extension — symlink $out into your extensions dir.
+      vscode = pkgs.callPackage ./ports/vscode { inherit palette; };
+
       # Vesktop / Vencord .theme.css file.
       discord = pkgs.callPackage ./ports/discord { inherit palette; };
 
