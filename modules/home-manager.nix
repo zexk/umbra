@@ -1067,14 +1067,14 @@ in {
 
     # ── VSCode ────────────────────────────────────────────────────────────────
     (lib.mkIf config.programs.vscode.enable {
-      programs.vscode.extensions = [ umbraVscodeExt ];
-      programs.vscode.userSettings."workbench.colorTheme" = "Umbra";
+      programs.vscode.profiles.default.extensions = [ umbraVscodeExt ];
+      programs.vscode.profiles.default.userSettings."workbench.colorTheme" = "Umbra";
     })
 
     # ── VSCodium ──────────────────────────────────────────────────────────────
     (lib.mkIf config.programs.vscodium.enable {
-      programs.vscodium.extensions = [ umbraVscodeExt ];
-      programs.vscodium.userSettings."workbench.colorTheme" = "Umbra";
+      programs.vscodium.profiles.default.extensions = [ umbraVscodeExt ];
+      programs.vscodium.profiles.default.userSettings."workbench.colorTheme" = "Umbra";
     })
 
   ]);
