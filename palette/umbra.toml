@@ -4,76 +4,72 @@
 [meta]
 name        = "Umbra"
 variant     = "dark"
-version     = "0.1"
-description = "A dark, deep-purple colour scheme built terminal-first"
+version     = "0.2"
+description = "A dark, plum-toned colour scheme built terminal-first"
 
 # ── Backgrounds ──────────────────────────────────────────────────────────────
-# Six-step ramp from deepest void to active-surface highlight.
 [backgrounds]
-bg0 = "#100c1c"   # base / void
-bg1 = "#181327"   # window background
-bg2 = "#221a35"   # panel / sidebar
-bg3 = "#2c2244"   # card / hover
-bg4 = "#392c56"   # selection / active
-bg5 = "#4a3a6e"   # border bright
+bg0 = "#0c040f"   # base / void
+bg1 = "#160a19"   # window background
+bg2 = "#231426"   # panel / sidebar
+bg3 = "#301f34"   # card / hover
+bg4 = "#412d45"   # selection / active
+bg5 = "#553e5a"   # border bright
 
 # ── Foregrounds ───────────────────────────────────────────────────────────────
 [foregrounds]
-fg0 = "#ece6f7"   # primary text
-fg1 = "#c8bce0"   # secondary text
-fg2 = "#9a8db8"   # muted
-fg3 = "#6e6189"   # comment / disabled
+fg0 = "#d9d1da"   # primary text
+fg1 = "#b1a7b3"   # secondary text
+fg2 = "#887b8c"   # muted
+fg3 = "#645567"   # comment / disabled
 
 # ── Borders ───────────────────────────────────────────────────────────────────
 [borders]
-line      = "#2a2240"
-line_soft = "#1f1830"
+line      = "#1d1120"
+line_soft = "#130915"
 
 # ── Accents ───────────────────────────────────────────────────────────────────
-# All tuned to ~OKLCH chroma 0.18 so they read as one family.
-# Shift hue to extend; adjust chroma only when intentionally louder/quieter.
 [accents]
-iris      = "#b48cff"   # primary purple — prompts, focus, selected items
-iris_soft = "#8c6dd1"   # hover state of iris, links
-mauve     = "#d49bff"   # highlight — numbers, constants, pulls
-magenta   = "#e26ad1"   # secondary — operators, keymaps, pizzazz
+iris      = "#b07bbc"   # primary plum — prompts, focus, selected items
+iris_soft = "#886498"   # hover state of iris, links
+mauve     = "#c68fc1"   # highlight — numbers, constants, pulls
+magenta   = "#b56b8f"   # secondary — operators, keymaps, pizzazz
 
 # ── ANSI 16 ───────────────────────────────────────────────────────────────────
 [ansi]
-black   = "#1a1428"
-red     = "#e26a7a"
-green   = "#8fd49b"
-yellow  = "#e8c87a"
-blue    = "#8aa9f0"
-magenta = "#c98aff"
-cyan    = "#7fd2d2"
-white   = "#c8bce0"
+black   = "#170d1a"
+red     = "#b97873"
+green   = "#8daf8e"
+yellow  = "#c1a77b"
+blue    = "#6ca0be"
+magenta = "#b77e9e"
+cyan    = "#7cb0af"
+white   = "#b1a7b3"
 
 [ansi.bright]
-black   = "#3a2f52"
-red     = "#ff8a98"
-green   = "#b0e8b9"
-yellow  = "#f4dc94"
-blue    = "#a9c2ff"
-magenta = "#e0a8ff"
-cyan    = "#a0e6e6"
-white   = "#ece6f7"
+black   = "#3c2c40"
+red     = "#d68f89"
+green   = "#a8c8a8"
+yellow  = "#d9c098"
+blue    = "#84b9d8"
+magenta = "#d395b8"
+cyan    = "#96c9c8"
+white   = "#dcd4de"
 
 # ── Semantic ──────────────────────────────────────────────────────────────────
 [semantic]
-success = "#8fd49b"
-warn    = "#e8c87a"
-error   = "#e26a7a"
-info    = "#8aa9f0"
+success = "#8daf8e"
+warn    = "#c1a77b"
+error   = "#b97873"
+info    = "#6ca0be"
 
 # ── Syntax tokens ─────────────────────────────────────────────────────────────
-# Reference mapping — port authors should derive from palette, not hardcode.
 [syntax]
-keyword  = "#b48cff"   # iris       — control flow, if, struct, return
-function = "#d49bff"   # mauve      — definitions and call sites
-type     = "#7fd2d2"   # ansi.cyan  — classes, structs, generics
-string   = "#8fd49b"   # ansi.green — literals and templates
-number   = "#e8c87a"   # ansi.yellow — ints, floats, hex literals
-operator = "#e26ad1"   # magenta    — + - = == :: punctuation
-property = "#a9c2ff"   # ansi.bright.blue — struct fields, css props
-comment  = "#6e6189"   # fg3        — low-prominence prose
+keyword  = "#b07bbc"   # iris       — control flow, if, struct, return
+function = "#c68fc1"   # mauve      — definitions and call sites
+type     = "#7cb0af"   # ansi.cyan  — classes, structs, generics
+string   = "#8daf8e"   # ansi.green — literals and templates
+number   = "#c1a77b"   # ansi.yellow — ints, floats, hex literals
+operator = "#b56b8f"   # magenta    — + - = == :: punctuation
+property = "#84b9d8"   # ansi.bright.blue — struct fields, css props
+comment  = "#645567"   # fg3        — low-prominence prose
