@@ -36,6 +36,9 @@
 
       # GTK3 theme + GTK4 libadwaita overrides.
       gtk = pkgs.callPackage ./ports/gtk { inherit palette; };
+
+      # dmenu wrapped with Umbra colors as default flags (native, no patch needed).
+      dmenu = pkgs.callPackage ./ports/dmenu { inherit palette; };
     });
 
     nixosModules.default =

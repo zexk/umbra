@@ -53,6 +53,15 @@ let
     *.color13: ${p.ansi.bright.magenta}
     *.color14: ${p.ansi.bright.cyan}
     *.color15: ${p.ansi.bright.white}
+
+    ! dmenu — Xresources patch (normbgcolor/normfgcolor/selbgcolor/selfgcolor)
+    dmenu.normbgcolor: ${p.backgrounds.bg1}
+    dmenu.normfgcolor: ${p.foregrounds.fg1}
+    dmenu.selbgcolor:  ${p.accents.iris}
+    dmenu.selfgcolor:  ${p.backgrounds.bg0}
+    dmenu.promptbg:    ${p.backgrounds.bg2}
+    dmenu.promptfg:    ${p.accents.iris}
+    dmenu.border:      ${p.borders.line}
   '';
 
   # ── oxwm ────────────────────────────────────────────────────────────────────
