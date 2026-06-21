@@ -7,13 +7,14 @@ let
     /**
      * @name Umbra
      * @description A dark plum colorscheme for Discord / Vesktop
-     * @version 0.2
+     * @version 0.3
      * @author Umbra
      * @source https://github.com/zexk/umbra
      */
 
     .theme-dark,
-    .theme-light {
+    .theme-light,
+    .visual-refresh {
       /* ── Umbra palette ──────────────────────────────────────────────────── */
       --um-bg0:     ${p.backgrounds.bg0};
       --um-bg1:     ${p.backgrounds.bg1};
@@ -46,6 +47,13 @@ let
       --interactive-active: var(--um-fg0);
       --interactive-muted:  var(--um-fg3);
 
+      /* ── 2025 text tokens ───────────────────────────────────────────────── */
+      --text-primary:       var(--um-fg0);
+      --text-default:       var(--um-fg0);
+      --text-strong:        var(--um-fg0);
+      --text-subtle:        var(--um-fg2);
+      --text-low-contrast:  var(--um-fg3);
+
       /* ── Backgrounds ────────────────────────────────────────────────────── */
       --background-primary:          var(--um-bg1);  /* main chat area */
       --background-secondary:        var(--um-bg2);  /* channel sidebar */
@@ -55,6 +63,14 @@ let
       --background-floating:         var(--um-bg2);  /* menus / tooltips */
       --background-mobile-primary:   var(--um-bg1);
       --background-mobile-secondary: var(--um-bg2);
+
+      /* ── 2025 visual-refresh surface hierarchy ──────────────────────────── */
+      --background-base-lowest:    var(--um-bg0);
+      --background-base-lower:     var(--um-bg1);
+      --background-base-low:       var(--um-bg2);
+      --background-base-code:      var(--um-bg3);
+      --background-surface-high:   var(--um-bg2);
+      --bg-surface-overlay:        var(--um-bg2);
 
       /* 8-digit hex for translucent modifiers (#RRGGBBAA) */
       --background-modifier-hover:     ${p.backgrounds.bg3}29;  /* ~16% */
@@ -67,6 +83,12 @@ let
       --background-help-warning:       ${p.ansi.yellow}1a;      /* ~10% */
       --background-help-info:          ${p.ansi.blue}1a;        /* ~10% */
 
+      /* ── 2025 overlay modifiers ─────────────────────────────────────────── */
+      --background-mod-invisible: transparent;
+      --background-mod-subtle:    ${p.backgrounds.bg3}29;  /* ~16% */
+      --background-mod-normal:    ${p.backgrounds.bg4}40;  /* ~25% */
+      --bg-mod-faint:             ${p.backgrounds.bg3}14;  /* ~8%  */
+
       /* ── Scrollbars ─────────────────────────────────────────────────────── */
       --scrollbar-thin-thumb:                  var(--um-bg4);
       --scrollbar-thin-track:                  transparent;
@@ -74,6 +96,13 @@ let
       --scrollbar-auto-track:                  var(--um-bg2);
       --scrollbar-auto-scrollbar-color-thumb:  var(--um-bg4);
       --scrollbar-auto-scrollbar-color-track:  var(--um-bg2);
+
+      /* ── 2025 borders & dividers ────────────────────────────────────────── */
+      --border-faint:    var(--um-bg4);
+      --border-subtle:   var(--um-bg5);
+      --border-strong:   var(--um-fg3);
+      --divider-subtle:  var(--um-bg3);
+      --divider-strong:  var(--um-bg4);
 
       /* ── Elevation / shadows ────────────────────────────────────────────── */
       --elevation-stroke: 0 0 0 1px ${p.backgrounds.bg0}4d;
