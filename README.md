@@ -43,7 +43,7 @@ The raw palette is exposed as `umbra.palette` for consumption by other flakes.
 
 ## Layout
 
-- `palette/umbra.toml` — single source of truth for every colour
-- `lib/` — palette helpers (flattening, ANSI ordering, hex conversion)
-- `ports/<app>/` — per-app theme source or template
-- `modules/` — NixOS and Home Manager modules that wire ports together
+- `palette/umbra.toml`: single source of truth for every colour
+- `lib/`: palette helpers (flattening, ANSI ordering, hex conversion)
+- `ports/<app>/`: per-app theme source or template
+- `modules/`: NixOS and Home Manager modules that wire ports together
