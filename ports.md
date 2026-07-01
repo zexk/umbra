@@ -1,0 +1,32 @@
+| Port        | Nix          | File                        |
+|-------------|--------------|---------------------------  |
+| alacritty   | wired        | ports/alacritty/umbra.toml  |
+| bat         | wired        | ports/bat/umbra.tmTheme     |
+| btop        | wired        | generated                   |
+| chromium    | wired        | generated                   |
+| dark-reader | wired        | generated                   |
+| delta       | inline       | —                           |
+| discord     | wired        | generated                   |
+| dmenu       | wired (pkg)  | —                           |
+| dunst       | wired        | ports/dunst/dunstrc         |
+| firefox     | wired        | generated                   |
+| foot        | inline       | —                           |
+| fzf         | wired        | ports/fzf/colors.sh         |
+| ghostty     | inline       | —                           |
+| gtk         | wired        | generated                   |
+| helix       | inline       | —                           |
+| kitty       | inline       | —                           |
+| lazygit     | inline       | —                           |
+| mako        | inline       | —                           |
+| neovim      | wired        | ports/neovim/               |
+| oxwm        | wired        | ports/oxwm/colors.nix       |
+| starship    | wired        | ports/starship/umbra.toml   |
+| swaylock    | inline       | —                           |
+| telegram    | wired        | generated                   |
+| tmux        | wired        | ports/tmux/umbra.conf       |
+| vimium-c    | wired        | generated                   |
+| vscode      | wired        | generated                   |
+| waybar      | inline       | —                           |
+| xresources  | wired        | ports/xresources/umbra.Xresources |
+| yazi        | inline       | —                           |
+| zed         | inline       | —                           |

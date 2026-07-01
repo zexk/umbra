@@ -1,0 +1,1592 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Umbra — a dark purple colorscheme for Linux</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* ============ UMBRA — Dark plum system ============ */
+    /* Baked from tweaks: variant=dark, hue=320°, chroma=0.11, contrast=1.0 */
+
+    /* Background ramp (deepest → highest surface) */
+    --u-bg0:        #0c040f;  /* base / void */
+    --u-bg1:        #160a19;  /* window background */
+    --u-bg2:        #231426;  /* panel / sidebar */
+    --u-bg3:        #301f34;  /* card / hover */
+    --u-bg4:        #412d45;  /* selection / active */
+    --u-bg5:        #553e5a;  /* border bright */
+
+    /* Foreground ramp */
+    --u-fg0:        #d9d1da;  /* primary text */
+    --u-fg1:        #b1a7b3;  /* secondary text */
+    --u-fg2:        #887b8c;  /* muted */
+    --u-fg3:        #645567;  /* comment / disabled */
+
+    /* Borders */
+    --u-line:       #1d1120;
+    --u-line-soft:  #130915;
+
+    /* Accents — the heart of Umbra (plum) */
+    --u-iris:       #b07bbc;  /* primary purple */
+    --u-iris-soft:  #886498;  /* hover-state purple */
+    --u-mauve:      #c68fc1;  /* highlight */
+    --u-magenta:    #b56b8f;  /* secondary accent */
+
+    /* ANSI 16 — dragon-muted */
+    --u-ansi-black:        #170d1a;
+    --u-ansi-red:          #b97873;
+    --u-ansi-green:        #8daf8e;
+    --u-ansi-yellow:       #c1a77b;
+    --u-ansi-blue:         #6ca0be;
+    --u-ansi-magenta:      #b77e9e;
+    --u-ansi-cyan:         #7cb0af;
+    --u-ansi-white:        #b1a7b3;
+
+    --u-ansi-br-black:     #3c2c40;
+    --u-ansi-br-red:       #d68f89;
+    --u-ansi-br-green:     #a8c8a8;
+    --u-ansi-br-yellow:    #d9c098;
+    --u-ansi-br-blue:      #84b9d8;
+    --u-ansi-br-magenta:   #d395b8;
+    --u-ansi-br-cyan:      #96c9c8;
+    --u-ansi-br-white:     #dcd4de;
+
+    /* Semantic */
+    --u-success:    #8daf8e;
+    --u-warn:       #c1a77b;
+    --u-error:      #b97873;
+    --u-info:       #6ca0be;
+
+    /* ===== Page meta ===== */
+    --page-bg:      #020103;
+    --type-sans:    "Fraunces", Georgia, serif;
+    --type-mono:    "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background: var(--page-bg);
+    color: var(--u-fg0);
+    font-family: var(--type-mono);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    padding: 56px 6vw 120px;
+  }
+
+  /* ========== Header ========== */
+  .masthead{
+    display:grid;
+    grid-template-columns: 1fr auto;
+    align-items:end;
+    gap: 40px;
+    border-bottom: 1px solid var(--u-line);
+    padding-bottom: 28px;
+    margin-bottom: 56px;
+  }
+  .mast-name{
+    font-family: var(--type-sans);
+    font-weight: 500;
+    font-size: clamp(56px, 9vw, 140px);
+    letter-spacing: -0.04em;
+    line-height: 0.92;
+    margin: 0;
+    color: var(--u-fg0);
+  }
+  .mast-name em{
+    font-style: italic;
+    color: var(--u-iris);
+    font-weight: 400;
+  }
+  .mast-meta{
+    font-family: var(--type-mono);
+    font-size: 12px;
+    color: var(--u-fg2);
+    text-align: right;
+    line-height: 1.8;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .mast-meta .v{ color: var(--u-fg0); }
+  .mast-tag{
+    grid-column: 1 / -1;
+    margin-top: 24px;
+    font-family: var(--type-mono);
+    font-size: 13px;
+    color: var(--u-fg1);
+    max-width: 64ch;
+    line-height: 1.7;
+  }
+  .mast-tag .marker{
+    color: var(--u-iris);
+    margin-right: 8px;
+  }
+
+  /* ========== Section ========== */
+  section{ margin-bottom: 88px; }
+  .sec-head{
+    display:flex; align-items:baseline; gap:16px;
+    padding-bottom: 14px;
+    margin-bottom: 28px;
+    border-bottom: 1px dashed var(--u-line);
+  }
+  .sec-num{
+    font-family: var(--type-mono);
+    font-size: 12px;
+    color: var(--u-iris);
+    letter-spacing: 0.1em;
+  }
+  .sec-title{
+    font-family: var(--type-sans);
+    font-weight: 500;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .sec-sub{
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--u-fg2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ========== Swatch primitives ========== */
+  .swatch-grid{
+    display:grid;
+    gap: 1px;
+    background: var(--u-line);
+    border: 1px solid var(--u-line);
+  }
+  .grid-6{ grid-template-columns: repeat(6, 1fr); }
+  .grid-5{ grid-template-columns: repeat(5, 1fr); }
+  .grid-4{ grid-template-columns: repeat(4, 1fr); }
+  .grid-8{ grid-template-columns: repeat(8, 1fr); }
+
+  .swatch{
+    background: var(--c, #000);
+    padding: 22px 18px 16px;
+    min-height: 140px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: transform 0.15s ease;
+  }
+  .swatch:hover{ transform: scale(1.01); z-index: 2; }
+  .swatch .role{
+    font-family: var(--type-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--label, var(--u-fg0));
+    opacity: 0.85;
+  }
+  .swatch .name{
+    font-family: var(--type-sans);
+    font-size: 22px;
+    color: var(--label, var(--u-fg0));
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .swatch .meta{
+    font-family: var(--type-mono);
+    font-size: 11px;
+    color: var(--label, var(--u-fg0));
+    opacity: 0.7;
+    line-height: 1.5;
+  }
+  .swatch .hex{
+    font-family: var(--type-mono);
+    font-size: 13px;
+    color: var(--label, var(--u-fg0));
+    letter-spacing: 0.04em;
+  }
+
+  /* ============ Core palette ============ */
+  .ramp-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .ramp-label{
+    font-family: var(--type-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--u-fg2);
+    margin-bottom: 10px;
+    display:flex;
+    justify-content: space-between;
+  }
+  .ramp-label span:last-child{ color: var(--u-fg3); }
+
+  /* ============ Terminal preview ============ */
+  .term{
+    background: var(--u-bg1);
+    border: 1px solid var(--u-line);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: var(--type-mono);
+    font-size: 13px;
+    line-height: 1.6;
+    box-shadow: 0 24px 60px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(180,140,255,0.06);
+  }
+  .term-bar{
+    background: var(--u-bg2);
+    padding: 10px 14px;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    border-bottom: 1px solid var(--u-line);
+  }
+  .term-dot{ width:11px; height:11px; border-radius:50%; }
+  .term-dot.r{ background:#b97873; }
+  .term-dot.y{ background:#c1a77b; }
+  .term-dot.g{ background:#8daf8e; }
+  .term-title{
+    margin-left: auto; margin-right: auto;
+    font-size: 11px; color: var(--u-fg2); letter-spacing: 0.05em;
+  }
+  .term-body{ padding: 22px 24px 28px; color: var(--u-fg0); }
+  .term-body .ln{ white-space: pre; }
+  .p-prompt   { color: var(--u-iris); }
+  .p-host     { color: var(--u-ansi-cyan); }
+  .p-arrow    { color: var(--u-magenta); }
+  .p-cmd      { color: var(--u-fg0); }
+  .p-flag     { color: var(--u-ansi-yellow); }
+  .p-str      { color: var(--u-ansi-green); }
+  .p-path     { color: var(--u-ansi-blue); }
+  .p-key      { color: var(--u-ansi-magenta); }
+  .p-num      { color: var(--u-mauve); }
+  .p-comment  { color: var(--u-fg3); font-style: italic; }
+  .p-err      { color: var(--u-error); }
+  .p-ok       { color: var(--u-success); }
+  .p-dim      { color: var(--u-fg2); }
+  .term-body .ln + .ln{ margin-top: 2px; }
+  .cursor{
+    display:inline-block;
+    width: 8px;
+    height: 1.1em;
+    background: var(--u-iris);
+    vertical-align: -2px;
+    margin-left: 2px;
+    animation: blink 1.05s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{ opacity: 0; } }
+
+  /* ============ Code preview (syntax) ============ */
+  .code-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .code-block{
+    background: var(--u-bg1);
+    border: 1px solid var(--u-line);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: var(--type-mono);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .code-header{
+    display:flex; justify-content: space-between; align-items:center;
+    padding: 10px 16px;
+    background: var(--u-bg2);
+    border-bottom: 1px solid var(--u-line);
+    font-size: 11px;
+    color: var(--u-fg2);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .code-header .lang{ color: var(--u-iris); }
+  .code-body{ padding: 18px 20px; white-space: pre; overflow-x:auto; }
+  .tk-kw      { color: var(--u-iris); font-weight: 500; }
+  .tk-fn      { color: var(--u-mauve); }
+  .tk-str     { color: var(--u-ansi-green); }
+  .tk-num     { color: var(--u-ansi-yellow); }
+  .tk-cmt     { color: var(--u-fg3); font-style: italic; }
+  .tk-op      { color: var(--u-magenta); }
+  .tk-type    { color: var(--u-ansi-cyan); }
+  .tk-var     { color: var(--u-fg0); }
+  .tk-prop    { color: var(--u-ansi-br-blue); }
+  .tk-punct   { color: var(--u-fg2); }
+
+  /* ============ GTK window mockup ============ */
+  .gtk{
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--u-line);
+    background: var(--u-bg1);
+    box-shadow: 0 30px 80px -24px rgba(0,0,0,0.8);
+  }
+  .gtk-headerbar{
+    background: var(--u-bg2);
+    border-bottom: 1px solid var(--u-line);
+    padding: 8px 12px;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  }
+  .gtk-headerbar .btns{ display:flex; gap:8px; }
+  .gtk-headerbar .btn{
+    width: 14px; height: 14px; border-radius:50%;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .gtk-headerbar .btn.min{ background: var(--u-bg4); }
+  .gtk-headerbar .btn.max{ background: var(--u-bg4); }
+  .gtk-headerbar .btn.cls{ background: var(--u-iris); }
+  .gtk-title{
+    font-family: var(--type-sans);
+    font-size: 13px;
+    color: var(--u-fg0);
+    margin-left: 8px;
+    font-weight: 500;
+  }
+  .gtk-subtitle{ font-size: 11px; color: var(--u-fg2); }
+  .gtk-actions{ margin-left:auto; display:flex; gap:6px; }
+  .gtk-icon{
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    background: var(--u-bg3);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--u-fg1); font-size: 14px;
+  }
+  .gtk-icon.primary{ background: var(--u-iris); color: var(--u-bg0); }
+
+  .gtk-body{
+    display:grid;
+    grid-template-columns: 200px 1fr;
+    min-height: 360px;
+  }
+  .gtk-side{
+    background: var(--u-bg1);
+    border-right: 1px solid var(--u-line);
+    padding: 12px 8px;
+  }
+  .gtk-side .label{
+    font-family: var(--type-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--u-fg3);
+    letter-spacing: 0.08em;
+    padding: 8px 10px;
+  }
+  .gtk-side .row{
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--u-fg1);
+    display:flex; gap:10px; align-items:center;
+    margin-bottom: 2px;
+    cursor: default;
+  }
+  .gtk-side .row .bullet{
+    width:8px; height:8px; border-radius:50%;
+    background: var(--bullet, var(--u-fg3));
+  }
+  .gtk-side .row:hover{ background: var(--u-bg3); color: var(--u-fg0); }
+  .gtk-side .row.active{
+    background: var(--u-bg4);
+    color: var(--u-fg0);
+    box-shadow: inset 2px 0 0 var(--u-iris);
+  }
+  .gtk-side .row .count{
+    margin-left:auto;
+    font-family: var(--type-mono);
+    font-size: 10px;
+    color: var(--u-fg3);
+  }
+  .gtk-main{
+    padding: 22px 24px;
+    background: var(--u-bg1);
+  }
+  .gtk-h1{
+    font-family: var(--type-sans);
+    font-size: 22px;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+    color: var(--u-fg0);
+    font-weight: 500;
+  }
+  .gtk-sub{ font-size: 12px; color: var(--u-fg2); margin-bottom: 18px; }
+  .gtk-card{
+    background: var(--u-bg2);
+    border: 1px solid var(--u-line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display:grid;
+    grid-template-columns: 28px 1fr auto;
+    align-items:center;
+    gap: 14px;
+    margin-bottom: 10px;
+  }
+  .gtk-card .dot{
+    width: 10px; height:10px; border-radius:50%;
+    justify-self:center;
+  }
+  .gtk-card .ttl{ font-size: 13px; color: var(--u-fg0); }
+  .gtk-card .meta{ font-size: 11px; color: var(--u-fg2); font-family: var(--type-mono); }
+  .gtk-card .pill{
+    font-family: var(--type-mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .pill-ok{ background: rgba(143,212,155,0.12); color: var(--u-success); }
+  .pill-warn{ background: rgba(232,200,122,0.12); color: var(--u-warn); }
+  .pill-err{ background: rgba(226,106,122,0.12); color: var(--u-error); }
+  .pill-info{ background: rgba(138,169,240,0.12); color: var(--u-info); }
+  .pill-acc{ background: rgba(180,140,255,0.14); color: var(--u-iris); }
+
+  .gtk-btn-row{ display:flex; gap:8px; margin-top: 18px; }
+  .gtk-btn{
+    font-family: var(--type-sans);
+    font-weight: 500;
+    font-size: 13px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--u-line);
+    background: var(--u-bg2);
+    color: var(--u-fg0);
+    cursor: pointer;
+  }
+  .gtk-btn.primary{
+    background: var(--u-iris);
+    color: var(--u-bg0);
+    border-color: var(--u-iris);
+  }
+  .gtk-btn.danger{
+    background: transparent;
+    color: var(--u-error);
+    border-color: rgba(226,106,122,0.4);
+  }
+
+  /* ============ Tiling WM mockup ============ */
+  .wm{
+    position: relative;
+    aspect-ratio: 16 / 10;
+    width: 100%;
+    overflow: hidden;
+    background: var(--u-bg0);
+    border: 1px solid var(--u-line);
+    font-family: var(--type-mono);
+    font-size: 12px;
+    color: var(--u-fg1);
+    box-shadow: 0 36px 90px -28px rgba(0,0,0,0.85);
+  }
+
+  /* i3bar-style status bar — single line, square */
+  .wm-bar{
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 22px;
+    background: var(--u-bg1);
+    border-bottom: 1px solid var(--u-line);
+    display: flex;
+    align-items: stretch;
+    font-size: 11px;
+    z-index: 5;
+  }
+  .wm-ws{ display:flex; }
+  .wm-ws .ws{
+    min-width: 22px;
+    display: inline-flex; align-items:center; justify-content:center;
+    background: transparent;
+    color: var(--u-fg3);
+    font-size: 11px;
+    padding: 0 8px;
+    border-right: 1px solid var(--u-line);
+  }
+  .wm-ws .ws.has{ color: var(--u-fg1); }
+  .wm-ws .ws.active{
+    background: var(--u-iris);
+    color: var(--u-bg0);
+    font-weight: 600;
+  }
+  .wm-ws .ws.urgent{ background: var(--u-error); color: var(--u-bg0); }
+  .wm-title{
+    color: var(--u-fg2);
+    font-size: 11px;
+    flex: 1;
+    display: flex; align-items: center;
+    padding: 0 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .wm-title b{ color: var(--u-fg0); font-weight: 500; }
+  .wm-modules{ display:flex; align-items:stretch; }
+  .wm-mod{
+    padding: 0 10px;
+    display: inline-flex; align-items:center; gap: 6px;
+    color: var(--u-fg1);
+    border-left: 1px solid var(--u-line);
+    font-size: 11px;
+  }
+  .wm-mod .lbl{ color: var(--u-fg3); }
+  .wm-mod.alert{ color: var(--u-error); }
+  .wm-mod.alert .lbl{ color: var(--u-error); opacity: 0.7; }
+  .wm-mod.clock{ background: var(--u-iris); color: var(--u-bg0); font-weight: 600; }
+
+  /* Tiled grid — thin square borders, small gaps */
+  .wm-tiles{
+    position: absolute;
+    top: 22px; left: 0; right: 0; bottom: 0;
+    padding: 6px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 6px;
+  }
+  .wm-win{
+    background: var(--u-bg1);
+    border: 2px solid var(--u-line);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .wm-win.focused{
+    border-color: var(--u-iris);
+  }
+  .wm-win.tall{ grid-row: span 2; }
+  .wm-win-hd{
+    padding: 4px 10px;
+    font-size: 10px;
+    color: var(--u-fg3);
+    border-bottom: 1px solid var(--u-line);
+    display: flex; justify-content: space-between; align-items:center;
+    background: var(--u-bg0);
+    letter-spacing: 0.04em;
+  }
+  .wm-win.focused .wm-win-hd{ color: var(--u-iris); }
+  .wm-win-hd .pid{ color: var(--u-fg3); font-family: var(--type-mono); }
+  .wm-win-body{
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 11px;
+    line-height: 1.6;
+    overflow: hidden;
+    min-height: 0;
+  }
+  .wm-win-body .ln{ white-space: pre; }
+
+  /* dunst — minimal, square, single block */
+  .wm-notif{
+    position: absolute;
+    top: 32px; right: 6px;
+    width: 260px;
+    background: var(--u-bg1);
+    border: 1px solid var(--u-iris);
+    padding: 8px 10px 9px;
+    z-index: 10;
+    font-size: 11px;
+  }
+  .wm-notif .hd{
+    display: flex; justify-content: space-between;
+    font-size: 10px;
+    color: var(--u-iris);
+    margin-bottom: 4px;
+  }
+  .wm-notif .hd .app{ letter-spacing: 0.04em; }
+  .wm-notif .hd .idx{ color: var(--u-fg3); }
+  .wm-notif .ttl{ color: var(--u-fg0); margin-bottom: 1px; }
+  .wm-notif .msg{ color: var(--u-fg2); line-height: 1.45; }
+  .wm-notif.urgent{ border-color: var(--u-error); }
+  .wm-notif.urgent .hd{ color: var(--u-error); }
+
+  /* dmenu (center patch) — single horizontal line, floating in screen center */
+  .wm-dmenu{
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 62%;
+    min-width: 460px;
+    height: 24px;
+    background: var(--u-bg1);
+    border: 1px solid var(--u-iris);
+    display: flex;
+    align-items: stretch;
+    font-size: 11px;
+    z-index: 20;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .wm-dmenu .prompt{
+    background: var(--u-iris);
+    color: var(--u-bg0);
+    padding: 0 10px;
+    display: inline-flex; align-items: center;
+    font-weight: 600;
+  }
+  .wm-dmenu .query{
+    padding: 0 10px;
+    display: inline-flex; align-items: center;
+    color: var(--u-fg0);
+    min-width: 80px;
+    border-right: 1px solid var(--u-line);
+  }
+  .wm-dmenu .query .cursor{
+    display: inline-block;
+    width: 7px; height: 13px;
+    background: var(--u-fg0);
+    vertical-align: -2px;
+    margin-left: 1px;
+    animation: blink 1.05s steps(1) infinite;
+  }
+  .wm-dmenu .opts{
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+  }
+  .wm-dmenu .opt{
+    padding: 0 10px;
+    display: inline-flex; align-items: center;
+    color: var(--u-fg1);
+  }
+  .wm-dmenu .opt b{ color: var(--u-iris); font-weight: 500; }
+  .wm-dmenu .opt.selected{
+    background: var(--u-bg4);
+    color: var(--u-fg0);
+  }
+  .wm-dmenu .opt.selected b{ color: var(--u-mauve); }
+
+  /* Keybind ribbon — square */
+  .wm-keys{
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--u-line);
+    background: var(--u-line);
+  }
+  .wm-key{
+    background: var(--u-bg1);
+    padding: 10px 12px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 11px;
+  }
+  .wm-key kbd{
+    font-family: var(--type-mono);
+    font-size: 10px;
+    background: var(--u-bg3);
+    color: var(--u-fg0);
+    padding: 2px 6px;
+    border: 1px solid var(--u-bg5);
+  }
+  .wm-key kbd.acc{ background: var(--u-iris); color: var(--u-bg0); border-color: var(--u-iris); }
+  .wm-key .desc{ color: var(--u-fg2); font-family: var(--type-sans); font-size: 12px; }
+
+  /* code accents inside WM windows */
+  .w-host { color: var(--u-ansi-cyan); }
+  .w-prompt{ color: var(--u-iris); }
+  .w-flag  { color: var(--u-ansi-yellow); }
+  .w-str   { color: var(--u-ansi-green); }
+  .w-path  { color: var(--u-ansi-blue); }
+  .w-key   { color: var(--u-magenta); }
+  .w-num   { color: var(--u-mauve); }
+  .w-cmt   { color: var(--u-fg3); font-style: italic; }
+  .w-ok    { color: var(--u-success); }
+  .w-err   { color: var(--u-error); }
+  .w-tag   { color: var(--u-ansi-magenta); }
+  .w-attr  { color: var(--u-ansi-yellow); }
+
+  /* ============ Semantic table ============ */
+  .role-table{
+    border: 1px solid var(--u-line);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: var(--type-mono);
+    font-size: 12px;
+  }
+  .role-row{
+    display:grid;
+    grid-template-columns: 28px 200px 1fr 130px 1fr;
+    align-items:center;
+    border-bottom: 1px solid var(--u-line);
+    background: var(--u-bg1);
+  }
+  .role-row:last-child{ border-bottom: none; }
+  .role-row.head{
+    background: var(--u-bg2);
+    color: var(--u-fg2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 10px;
+  }
+  .role-row > *{
+    padding: 12px 16px;
+    border-right: 1px solid var(--u-line);
+  }
+  .role-row > *:last-child{ border-right: none; }
+  .role-row .chip{
+    padding: 0;
+    width: 28px; height: 100%;
+    background: var(--swatch);
+    border-right: 1px solid var(--u-line);
+  }
+  .role-row .var{ color: var(--u-iris); }
+  .role-row .hex{ color: var(--u-fg1); }
+  .role-row .desc{ color: var(--u-fg2); }
+  .role-row .use{ color: var(--u-fg1); }
+
+  /* ============ Notes ============ */
+  .note{
+    border-left: 2px solid var(--u-iris);
+    padding: 4px 0 4px 16px;
+    color: var(--u-fg1);
+    font-size: 13px;
+    max-width: 72ch;
+    margin: 24px 0 0;
+  }
+  .note b{ color: var(--u-iris); font-weight: 500; }
+
+  /* footer */
+  footer{
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--u-line);
+    color: var(--u-fg3);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display:flex; justify-content: space-between;
+  }
+
+  /* tweak overlays */
+  #tweaks-root .tweaks-anchor{ font-family: var(--type-mono) !important; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <h1 class="mast-name">Umbra<em>.</em></h1>
+  <div class="mast-meta">
+    <div>VERSION&nbsp;&nbsp;<span class="v">0.1 / draft</span></div>
+    <div>SCHEME&nbsp;&nbsp;&nbsp;<span class="v">dark, purple</span></div>
+    <div>SCOPE&nbsp;&nbsp;&nbsp;&nbsp;<span class="v">terminal · gtk · syntax</span></div>
+    <div>CONTRAST&nbsp;<span class="v">WCAG AA on bg1</span></div>
+  </div>
+  <p class="mast-tag">
+    <span class="marker">$</span>A dark, deep-purple colour scheme built terminal-first and extended outward into GTK surfaces, semantic UI and syntax tokens. Every accent shares the same chroma so warnings, errors and selections feel like neighbours, not strangers.
+  </p>
+</header>
+
+<!-- ============================================================ 01 CORE PALETTE -->
+<section>
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">Core palette</h2>
+    <span class="sec-sub">backgrounds · foregrounds · accents</span>
+  </div>
+
+  <div class="ramp-grid">
+    <div>
+      <div class="ramp-label"><span>Backgrounds</span><span>deepest → highest</span></div>
+      <div class="swatch-grid grid-6">
+        <div class="swatch" style="--c:var(--u-bg0)">
+          <div class="role">bg0</div>
+          <div><div class="name">Void</div><div class="hex" data-token="--u-bg0"></div></div>
+        </div>
+        <div class="swatch" style="--c:var(--u-bg1)">
+          <div class="role">bg1</div>
+          <div><div class="name">Window</div><div class="hex" data-token="--u-bg1"></div></div>
+        </div>
+        <div class="swatch" style="--c:var(--u-bg2)">
+          <div class="role">bg2</div>
+          <div><div class="name">Panel</div><div class="hex" data-token="--u-bg2"></div></div>
+        </div>
+        <div class="swatch" style="--c:var(--u-bg3)">
+          <div class="role">bg3</div>
+          <div><div class="name">Hover</div><div class="hex" data-token="--u-bg3"></div></div>
+        </div>
+        <div class="swatch" style="--c:var(--u-bg4)">
+          <div class="role">bg4</div>
+          <div><div class="name">Active</div><div class="hex" data-token="--u-bg4"></div></div>
+        </div>
+        <div class="swatch" style="--c:var(--u-bg5)">
+          <div class="role">bg5</div>
+          <div><div class="name">Border</div><div class="hex" data-token="--u-bg5"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="ramp-label"><span>Foregrounds</span><span>primary → muted</span></div>
+      <div class="swatch-grid grid-4">
+        <div class="swatch" style="--c:var(--u-fg0)">
+          <div class="role">fg0</div>
+          <div><div class="name">Primary</div><div class="hex" data-token="--u-fg0"></div></div>
+        </div>
+        <div class="swatch" style="--c:var(--u-fg1)">
+          <div class="role">fg1</div>
+          <div><div class="name">Secondary</div><div class="hex" data-token="--u-fg1"></div></div>
+        </div>
+        <div class="swatch" style="--c:var(--u-fg2)">
+          <div class="role">fg2</div>
+          <div><div class="name">Muted</div><div class="hex" data-token="--u-fg2"></div></div>
+        </div>
+        <div class="swatch" style="--c:var(--u-fg3)">
+          <div class="role">fg3</div>
+          <div><div class="name">Comment</div><div class="hex" data-token="--u-fg3"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ramp-label" style="margin-top:32px;"><span>Purple accents</span><span>the heart of umbra</span></div>
+  <div class="swatch-grid grid-4">
+    <div class="swatch" style="--c:var(--u-iris);min-height:170px">
+      <div class="role">accent · primary</div>
+      <div>
+        <div class="name" style="font-size:32px">Iris</div>
+        <div class="meta">prompts · selected items · focus</div>
+      </div>
+      <div class="hex" data-token="--u-iris"></div>
+    </div>
+    <div class="swatch" style="--c:var(--u-iris-soft);min-height:170px">
+      <div class="role">accent · hover</div>
+      <div>
+        <div class="name" style="font-size:32px">Iris soft</div>
+        <div class="meta">hover state of iris · links</div>
+      </div>
+      <div class="hex" data-token="--u-iris-soft"></div>
+    </div>
+    <div class="swatch" style="--c:var(--u-mauve);min-height:170px">
+      <div class="role">accent · highlight</div>
+      <div>
+        <div class="name" style="font-size:32px">Mauve</div>
+        <div class="meta">numbers · constants · pulls</div>
+      </div>
+      <div class="hex" data-token="--u-mauve"></div>
+    </div>
+    <div class="swatch" style="--c:var(--u-magenta);min-height:170px">
+      <div class="role">accent · secondary</div>
+      <div>
+        <div class="name" style="font-size:32px">Magenta</div>
+        <div class="meta">operators · keymap · pizzazz</div>
+      </div>
+      <div class="hex" data-token="--u-magenta"></div>
+    </div>
+  </div>
+
+  <p class="note">
+    <b>Design rule.</b> All accents are tuned to roughly the same OKLCH chroma (~0.18) so they read as one family. When extending the palette for new contexts, shift hue first — only adjust chroma if you intentionally want a louder or quieter colour.
+  </p>
+</section>
+
+<!-- ============================================================ 02 ANSI -->
+<section>
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">Terminal — ANSI 16</h2>
+    <span class="sec-sub">standard · bright</span>
+  </div>
+
+  <div class="ramp-label"><span>Standard (0–7)</span><span>ls · git · grep · less</span></div>
+  <div class="swatch-grid grid-8">
+    <div class="swatch" style="--c:var(--u-ansi-black)"><div class="role">00 black</div><div class="hex" data-token="--u-ansi-black"></div></div>
+    <div class="swatch" style="--c:var(--u-ansi-red)"><div class="role">01 red</div><div class="hex" data-token="--u-ansi-red"></div></div>
+    <div class="swatch" style="--c:var(--u-ansi-green)"><div class="role">02 green</div><div class="hex" data-token="--u-ansi-green"></div></div>
+    <div class="swatch" style="--c:var(--u-ansi-yellow)"><div class="role">03 yellow</div><div class="hex" data-token="--u-ansi-yellow"></div></div>
+    <div class="swatch" style="--c:var(--u-ansi-blue)"><div class="role">04 blue</div><div class="hex" data-token="--u-ansi-blue"></div></div>
+    <div class="swatch" style="--c:var(--u-ansi-magenta)"><div class="role">05 magenta</div><div class="hex" data-token="--u-ansi-magenta"></div></div>
+    <div class="swatch" style="--c:var(--u-ansi-cyan)"><div class="role">06 cyan</div><div class="hex" data-token="--u-ansi-cyan"></div></div>
+    <div class="swatch" style="--c:var(--u-ansi-white)"><div class="role">07 white</div><div class="hex" data-token="--u-ansi-white"></div></div>
+  </div>
+
+  <div class="ramp-label" style="margin-top:24px;"><span>Bright (8–15)</span><span>emphasis · selected</span></div>
+  <div class="swatch-grid grid-8">
+    <div class="swatch" style="--c:var(--u-ansi-br-black)"><div class="role">08 br black</div><div class="hex" data-token="--u-ansi-br-black"></div></div>
+    <div class="swatch" style="--c:var(--u-ansi-br-red)"><div class="role">09 br red</div><div class="hex" data-token="--u-ansi-br-red"></div></div>
+    <div class="swatch" style="--c:var(--u-ansi-br-green)"><div class="role">10 br green</div><div class="hex" data-token="--u-ansi-br-green"></div></div>
+    <div class="swatch" style="--c:var(--u-ansi-br-yellow)"><div class="role">11 br yellow</div><div class="hex" data-token="--u-ansi-br-yellow"></div></div>
+    <div class="swatch" style="--c:var(--u-ansi-br-blue)"><div class="role">12 br blue</div><div class="hex" data-token="--u-ansi-br-blue"></div></div>
+    <div class="swatch" style="--c:var(--u-ansi-br-magenta)"><div class="role">13 br magenta</div><div class="hex" data-token="--u-ansi-br-magenta"></div></div>
+    <div class="swatch" style="--c:var(--u-ansi-br-cyan)"><div class="role">14 br cyan</div><div class="hex" data-token="--u-ansi-br-cyan"></div></div>
+    <div class="swatch" style="--c:var(--u-ansi-br-white)"><div class="role">15 br white</div><div class="hex" data-token="--u-ansi-br-white"></div></div>
+  </div>
+
+  <!-- live terminal -->
+  <div class="term" style="margin-top: 32px;">
+    <div class="term-bar">
+      <div class="term-dot r"></div><div class="term-dot y"></div><div class="term-dot g"></div>
+      <div class="term-title">~/projects/umbra — zsh</div>
+    </div>
+    <div class="term-body">
+<div class="ln"><span class="p-prompt">❯</span> <span class="p-cmd">ls</span> <span class="p-flag">-lah</span> <span class="p-path">~/projects/umbra</span></div>
+<div class="ln"><span class="p-dim">drwxr-xr-x</span>  <span class="p-num">7</span> luna  staff   <span class="p-num">224B</span> <span class="p-comment">May 25 14:22</span> <span class="p-path">.</span></div>
+<div class="ln"><span class="p-dim">-rw-r--r--</span>  <span class="p-num">1</span> luna  staff   <span class="p-num">1.4K</span> <span class="p-comment">May 25 14:18</span> <span class="p-str">README.md</span></div>
+<div class="ln"><span class="p-dim">-rw-r--r--</span>  <span class="p-num">1</span> luna  staff   <span class="p-num">7.2K</span> <span class="p-comment">May 25 14:21</span> <span class="p-key">umbra.toml</span></div>
+<div class="ln"><span class="p-dim">drwxr-xr-x</span>  <span class="p-num">4</span> luna  staff   <span class="p-num">128B</span> <span class="p-comment">May 25 11:09</span> <span class="p-path">gtk-3.0/</span></div>
+<div class="ln">&nbsp;</div>
+<div class="ln"><span class="p-prompt">❯</span> <span class="p-cmd">git</span> <span class="p-flag">status</span></div>
+<div class="ln">On branch <span class="p-key">main</span></div>
+<div class="ln">Changes not staged for commit:</div>
+<div class="ln">  <span class="p-err">modified:</span>   <span class="p-path">palette/ansi.toml</span></div>
+<div class="ln">  <span class="p-ok">new file:</span>   <span class="p-path">palette/syntax.toml</span></div>
+<div class="ln">&nbsp;</div>
+<div class="ln"><span class="p-prompt">❯</span> <span class="p-cmd">systemctl</span> <span class="p-flag">--user status umbra.service</span></div>
+<div class="ln"><span class="p-ok">●</span> umbra.service - <span class="p-dim">Umbra colourscheme daemon</span></div>
+<div class="ln">     Loaded: loaded (<span class="p-path">/usr/lib/.../umbra.service</span>; enabled)</div>
+<div class="ln">     Active: <span class="p-ok">active (running)</span> since Mon <span class="p-num">2026-05-25 09:14:02</span></div>
+<div class="ln">&nbsp;</div>
+<div class="ln"><span class="p-prompt">❯</span> <span class="p-cmd">curl</span> <span class="p-flag">-fsSL</span> <span class="p-str">"https://umbra.sh/install.sh"</span> <span class="p-arrow">|</span> <span class="p-cmd">sh</span><span class="cursor"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 03 Syntax -->
+<section>
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">Syntax tokens</h2>
+    <span class="sec-sub">neovim · helix · vscode</span>
+  </div>
+
+  <div class="code-grid">
+    <div class="code-block">
+      <div class="code-header"><span>palette.c</span><span class="lang">c</span></div>
+<pre class="code-body"><span class="tk-cmt">/* Resolve a token to its concrete colour. */</span>
+<span class="tk-kw">#include</span> <span class="tk-str">&lt;stdint.h&gt;</span>
+<span class="tk-kw">#include</span> <span class="tk-str">"palette.h"</span>
+
+<span class="tk-kw">struct</span> <span class="tk-type">palette</span> <span class="tk-punct">{</span>
+    <span class="tk-kw">const</span> <span class="tk-type">char</span> <span class="tk-op">*</span><span class="tk-prop">name</span><span class="tk-punct">;</span>
+    <span class="tk-type">color_t</span>     <span class="tk-prop">roles</span><span class="tk-punct">[</span><span class="tk-type">ROLE_MAX</span><span class="tk-punct">];</span>
+<span class="tk-punct">};</span>
+
+<span class="tk-type">color_t</span>
+<span class="tk-fn">palette_resolve</span><span class="tk-punct">(</span><span class="tk-kw">const</span> <span class="tk-kw">struct</span> <span class="tk-type">palette</span> <span class="tk-op">*</span><span class="tk-var">p</span><span class="tk-punct">,</span> <span class="tk-type">role_t</span> <span class="tk-var">r</span><span class="tk-punct">)</span>
+<span class="tk-punct">{</span>
+    <span class="tk-kw">if</span> <span class="tk-punct">(</span><span class="tk-var">r</span> <span class="tk-op">&lt;</span> <span class="tk-num">0</span> <span class="tk-op">||</span> <span class="tk-var">r</span> <span class="tk-op">&gt;=</span> <span class="tk-type">ROLE_MAX</span><span class="tk-punct">)</span>
+        <span class="tk-kw">return</span> <span class="tk-fn">color_hex</span><span class="tk-punct">(</span><span class="tk-str">"#b07bbc"</span><span class="tk-punct">);</span>
+    <span class="tk-kw">return</span> <span class="tk-var">p</span><span class="tk-op">-&gt;</span><span class="tk-prop">roles</span><span class="tk-punct">[</span><span class="tk-var">r</span><span class="tk-punct">];</span>
+<span class="tk-punct">}</span>
+
+<span class="tk-cmt">/* Default to Iris when a role is missing. */</span>
+<span class="tk-kw">static</span> <span class="tk-kw">const</span> <span class="tk-type">char</span> <span class="tk-op">*</span><span class="tk-var">FALLBACK</span> <span class="tk-op">=</span> <span class="tk-str">"#b07bbc"</span><span class="tk-punct">;</span>
+<span class="tk-kw">static</span> <span class="tk-kw">const</span> <span class="tk-type">uint32_t</span> <span class="tk-var">VERSION</span>  <span class="tk-op">=</span> <span class="tk-num">42</span><span class="tk-punct">;</span></pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header"><span>umbra.toml</span><span class="lang">toml</span></div>
+<pre class="code-body"><span class="tk-cmt"># Umbra — dark purple system</span>
+<span class="tk-punct">[</span><span class="tk-type">meta</span><span class="tk-punct">]</span>
+<span class="tk-prop">name</span>     <span class="tk-op">=</span> <span class="tk-str">"Umbra"</span>
+<span class="tk-prop">variant</span>  <span class="tk-op">=</span> <span class="tk-str">"dark"</span>
+<span class="tk-prop">version</span>  <span class="tk-op">=</span> <span class="tk-num">0.1</span>
+
+<span class="tk-punct">[</span><span class="tk-type">ansi</span><span class="tk-punct">]</span>
+<span class="tk-prop">black</span>    <span class="tk-op">=</span> <span class="tk-str">"#170d1a"</span>
+<span class="tk-prop">red</span>      <span class="tk-op">=</span> <span class="tk-str">"#b97873"</span>
+<span class="tk-prop">green</span>    <span class="tk-op">=</span> <span class="tk-str">"#8daf8e"</span>
+<span class="tk-prop">yellow</span>   <span class="tk-op">=</span> <span class="tk-str">"#c1a77b"</span>
+<span class="tk-prop">blue</span>     <span class="tk-op">=</span> <span class="tk-str">"#6ca0be"</span>
+<span class="tk-prop">magenta</span>  <span class="tk-op">=</span> <span class="tk-str">"#b77e9e"</span>
+<span class="tk-prop">cyan</span>     <span class="tk-op">=</span> <span class="tk-str">"#7cb0af"</span>
+<span class="tk-prop">white</span>    <span class="tk-op">=</span> <span class="tk-str">"#b1a7b3"</span>
+
+<span class="tk-punct">[</span><span class="tk-type">accents</span><span class="tk-punct">]</span>
+<span class="tk-prop">iris</span>     <span class="tk-op">=</span> <span class="tk-str">"#b07bbc"</span>
+<span class="tk-prop">mauve</span>    <span class="tk-op">=</span> <span class="tk-str">"#c68fc1"</span>
+<span class="tk-prop">magenta2</span> <span class="tk-op">=</span> <span class="tk-str">"#b56b8f"</span></pre>
+    </div>
+  </div>
+
+  <div class="ramp-label" style="margin-top:32px;"><span>Token map</span><span>scope → role</span></div>
+  <div class="role-table">
+    <div class="role-row head">
+      <div></div><div>Token</div><div>Description</div><div>Hex</div><div>Mapped from</div>
+    </div>
+    <div class="role-row">
+      <div class="chip" style="--swatch:var(--u-iris)"></div>
+      <div class="var">keyword</div>
+      <div class="desc">control flow, if, struct, return</div>
+      <div class="hex" data-token="--u-ansi-br-white"></div>
+      <div class="use">accent · iris</div>
+    </div>
+    <div class="role-row">
+      <div class="chip" style="--swatch:var(--u-mauve)"></div>
+      <div class="var">function</div>
+      <div class="desc">definitions and call sites</div>
+      <div class="hex" data-token="--u-iris"></div>
+      <div class="use">accent · mauve</div>
+    </div>
+    <div class="role-row">
+      <div class="chip" style="--swatch:var(--u-ansi-cyan)"></div>
+      <div class="var">type</div>
+      <div class="desc">classes, structs, generics</div>
+      <div class="hex" data-token="--u-mauve"></div>
+      <div class="use">ansi · cyan</div>
+    </div>
+    <div class="role-row">
+      <div class="chip" style="--swatch:var(--u-ansi-green)"></div>
+      <div class="var">string</div>
+      <div class="desc">literals and templates</div>
+      <div class="hex" data-token="--u-ansi-cyan"></div>
+      <div class="use">ansi · green</div>
+    </div>
+    <div class="role-row">
+      <div class="chip" style="--swatch:var(--u-ansi-yellow)"></div>
+      <div class="var">number</div>
+      <div class="desc">ints, floats, hex literals</div>
+      <div class="hex" data-token="--u-ansi-green"></div>
+      <div class="use">ansi · yellow</div>
+    </div>
+    <div class="role-row">
+      <div class="chip" style="--swatch:var(--u-magenta)"></div>
+      <div class="var">operator</div>
+      <div class="desc">+ - = == :: punctuation</div>
+      <div class="hex" data-token="--u-ansi-yellow"></div>
+      <div class="use">accent · magenta</div>
+    </div>
+    <div class="role-row">
+      <div class="chip" style="--swatch:var(--u-ansi-br-blue)"></div>
+      <div class="var">property</div>
+      <div class="desc">struct fields, css props</div>
+      <div class="hex" data-token="--u-magenta"></div>
+      <div class="use">ansi · br blue</div>
+    </div>
+    <div class="role-row">
+      <div class="chip" style="--swatch:#645567"></div>
+      <div class="var">comment</div>
+      <div class="desc">low-prominence prose</div>
+      <div class="hex" data-token="--u-ansi-br-blue"></div>
+      <div class="use">fg3</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 04 GTK -->
+<section>
+  <div class="sec-head">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">GTK · application surfaces</h2>
+    <span class="sec-sub">headerbar · sidebar · cards</span>
+  </div>
+
+  <div class="gtk">
+    <div class="gtk-headerbar">
+      <div class="btns">
+        <div class="btn min"></div>
+        <div class="btn max"></div>
+        <div class="btn cls"></div>
+      </div>
+      <div class="gtk-title">Files</div>
+      <div class="gtk-subtitle">— ~/projects/umbra</div>
+      <div class="gtk-actions">
+        <div class="gtk-icon">⌕</div>
+        <div class="gtk-icon">⋯</div>
+        <div class="gtk-icon primary">+</div>
+      </div>
+    </div>
+    <div class="gtk-body">
+      <aside class="gtk-side">
+        <div class="label">Places</div>
+        <div class="row"><span class="bullet" style="--bullet:#8daf8e"></span>Home<span class="count">12</span></div>
+        <div class="row active"><span class="bullet" style="--bullet:#b07bbc"></span>Projects<span class="count">07</span></div>
+        <div class="row"><span class="bullet" style="--bullet:#6ca0be"></span>Downloads<span class="count">34</span></div>
+        <div class="row"><span class="bullet" style="--bullet:#c1a77b"></span>Pictures<span class="count">128</span></div>
+        <div class="label" style="margin-top:14px">Drives</div>
+        <div class="row"><span class="bullet" style="--bullet:#7cb0af"></span>nvme0n1<span class="count">86%</span></div>
+        <div class="row"><span class="bullet" style="--bullet:#b97873"></span>backup<span class="count">!</span></div>
+      </aside>
+      <main class="gtk-main">
+        <h3 class="gtk-h1">Projects</h3>
+        <div class="gtk-sub">7 items · sorted by modified</div>
+        <div class="gtk-card">
+          <div class="dot" style="background:#b07bbc"></div>
+          <div>
+            <div class="ttl">umbra/</div>
+            <div class="meta">modified 2 minutes ago</div>
+          </div>
+          <div class="pill pill-acc">active</div>
+        </div>
+        <div class="gtk-card">
+          <div class="dot" style="background:#8daf8e"></div>
+          <div>
+            <div class="ttl">syntax-experiments/</div>
+            <div class="meta">modified yesterday · 4.2 MB</div>
+          </div>
+          <div class="pill pill-ok">synced</div>
+        </div>
+        <div class="gtk-card">
+          <div class="dot" style="background:#c1a77b"></div>
+          <div>
+            <div class="ttl">old-themes/</div>
+            <div class="meta">unmodified · 312 MB</div>
+          </div>
+          <div class="pill pill-warn">archive</div>
+        </div>
+        <div class="gtk-card">
+          <div class="dot" style="background:#b97873"></div>
+          <div>
+            <div class="ttl">backup-fail.log</div>
+            <div class="meta">last attempt failed · 03:11</div>
+          </div>
+          <div class="pill pill-err">error</div>
+        </div>
+        <div class="gtk-btn-row">
+          <button class="gtk-btn primary">Open in terminal</button>
+          <button class="gtk-btn">New folder</button>
+          <button class="gtk-btn danger">Remove</button>
+        </div>
+      </main>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 05 Tiling WM -->
+<section>
+  <div class="sec-head">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">Tiling WM · desktop surfaces</h2>
+    <span class="sec-sub">x11 · i3 / dwm · dunst · dmenu</span>
+  </div>
+
+  <div class="wm">
+    <!-- i3bar / lemonbar-style status -->
+    <div class="wm-bar">
+      <div class="wm-ws">
+        <div class="ws has">1</div>
+        <div class="ws active">2</div>
+        <div class="ws has">3</div>
+        <div class="ws">4</div>
+        <div class="ws has">5</div>
+        <div class="ws urgent">6</div>
+        <div class="ws">7</div>
+        <div class="ws">8</div>
+      </div>
+      <div class="wm-title">luna@nyx · <b>nvim ~/projects/umbra/palette.c</b></div>
+      <div class="wm-modules">
+        <div class="wm-mod"><span class="lbl">cpu</span> 12%</div>
+        <div class="wm-mod"><span class="lbl">mem</span> 4.2G</div>
+        <div class="wm-mod"><span class="lbl">vol</span> 64</div>
+        <div class="wm-mod alert"><span class="lbl">bat</span> 18%</div>
+        <div class="wm-mod clock">mon 14:22</div>
+      </div>
+    </div>
+
+    <!-- Tiled windows -->
+    <div class="wm-tiles">
+      <!-- Master: nvim -->
+      <div class="wm-win focused tall">
+        <div class="wm-win-hd"><span>nvim — palette.c</span><span class="pid">[1/3] · pid 84210</span></div>
+        <div class="wm-win-body">
+<div class="ln"><span class="w-cmt"> 1  /* Umbra — dark purple system */</span></div>
+<div class="ln"><span class="w-key"> 2  #include</span> <span class="w-str">&lt;stdint.h&gt;</span></div>
+<div class="ln"><span class="w-key"> 3  #include</span> <span class="w-str">"palette.h"</span></div>
+<div class="ln"><span class="w-cmt"> 4</span></div>
+<div class="ln"><span class="w-key"> 5  struct</span> <span class="w-host">palette</span> {</div>
+<div class="ln"><span class="w-cmt"> 6</span>    <span class="w-key">const</span> <span class="w-host">char</span> *name;</div>
+<div class="ln"><span class="w-cmt"> 7</span>    <span class="w-host">color_t</span>    roles[<span class="w-host">ROLE_MAX</span>];</div>
+<div class="ln"><span class="w-cmt"> 8</span>  };</div>
+<div class="ln"><span class="w-cmt"> 9</span></div>
+<div class="ln"><span class="w-host">10  color_t</span></div>
+<div class="ln"><span class="w-cmt">11</span>  <span class="w-num">palette_resolve</span>(<span class="w-key">const struct</span> <span class="w-host">palette</span> *p, <span class="w-host">role_t</span> r)</div>
+<div class="ln"><span class="w-cmt">12</span>  {</div>
+<div class="ln"><span class="w-cmt">13</span>    <span class="w-key">if</span> (r &lt; <span class="w-num">0</span> || r &gt;= <span class="w-host">ROLE_MAX</span>)</div>
+<div class="ln"><span class="w-cmt">14</span>      <span class="w-key">return</span> <span class="w-num">color_hex</span>(<span class="w-str">"#b07bbc"</span>);</div>
+<div class="ln"><span class="w-cmt">15</span>    <span class="w-key">return</span> p-&gt;roles[r];</div>
+<div class="ln"><span class="w-cmt">16</span>  }</div>
+        </div>
+      </div>
+
+      <!-- top right: terminal -->
+      <div class="wm-win">
+        <div class="wm-win-hd"><span>st · zsh</span><span class="pid">[2/3]</span></div>
+        <div class="wm-win-body">
+<div class="ln"><span class="w-prompt">❯</span> <span class="w-key">make</span></div>
+<div class="ln"><span class="w-cmt">cc -O2 -Wall -Wextra -c palette.c</span></div>
+<div class="ln"><span class="w-cmt">cc -O2 -Wall -Wextra -c roles.c</span></div>
+<div class="ln"><span class="w-cmt">cc -o umbra palette.o roles.o</span></div>
+<div class="ln"><span class="w-ok">built umbra (a.out → bin/)</span></div>
+<div class="ln"><span class="w-prompt">❯</span> <span class="w-key">xrdb</span> <span class="w-flag">-merge</span> <span class="w-path">~/.Xresources</span></div>
+<div class="ln"><span class="w-prompt">❯</span> <span class="w-key">i3-msg</span> reload</div>
+<div class="ln"><span class="w-ok">[{ "success": true }]</span></div>
+<div class="ln"><span class="w-prompt">❯</span> <span style="display:inline-block;width:7px;height:13px;background:var(--u-iris);vertical-align:-2px;animation:blink 1.05s steps(1) infinite"></span></div>
+        </div>
+      </div>
+
+      <!-- bottom right: btop -->
+      <div class="wm-win">
+        <div class="wm-win-hd"><span>btop · sys</span><span class="pid">[3/3]</span></div>
+        <div class="wm-win-body" style="padding: 8px 12px;">
+<div class="ln" style="color:var(--u-fg3);font-size:10px;">CPU      MEM      DISK</div>
+<div class="ln" style="margin-top:4px"><span class="w-host">▁▂▄▇▅▃▂▁</span> <span class="w-num">12%</span></div>
+<div class="ln"><span style="color:var(--u-iris)">▂▃▄▅▆▇█▇</span> <span class="w-num">48%</span></div>
+<div class="ln"><span class="w-ok">▁▁▂▂▁▁▂▂</span> <span class="w-num">23%</span></div>
+<div class="ln" style="margin-top:6px;color:var(--u-fg3);font-size:10px;">PROC</div>
+<div class="ln"><span class="w-key">nvim</span>      <span class="w-num">2.1%</span></div>
+<div class="ln"><span class="w-key">firefox</span>   <span class="w-num">8.3%</span></div>
+<div class="ln"><span class="w-key">Xorg</span>      <span class="w-num">0.4%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- dunst notification (minimal, square) -->
+    <div class="wm-notif">
+      <div class="hd"><span class="app">git</span><span class="idx">1/2</span></div>
+      <div class="ttl">Pull complete</div>
+      <div class="msg">main → origin/main · 3 commits, +124 −38</div>
+    </div>
+
+    <!-- dmenu (single line at top, overlays the bar when invoked) -->
+    <div class="wm-dmenu">
+      <span class="prompt">run:</span>
+      <span class="query">fire<span class="cursor"></span></span>
+      <div class="opts">
+        <span class="opt selected"><b>fire</b>fox</span>
+        <span class="opt"><b>fire</b>walld</span>
+        <span class="opt"><b>fire</b>jail</span>
+        <span class="opt">flameshot</span>
+        <span class="opt">fzf</span>
+        <span class="opt">file-roller</span>
+        <span class="opt">feh</span>
+        <span class="opt">ffmpeg</span>
+        <span class="opt">free</span>
+        <span class="opt">find</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keybind ribbon -->
+  <div class="wm-keys">
+    <div class="wm-key"><kbd class="acc">Super</kbd><kbd>D</kbd><span class="desc">Launcher</span></div>
+    <div class="wm-key"><kbd class="acc">Super</kbd><kbd>↵</kbd><span class="desc">Terminal</span></div>
+    <div class="wm-key"><kbd class="acc">Super</kbd><kbd>H/J/K/L</kbd><span class="desc">Focus</span></div>
+    <div class="wm-key"><kbd class="acc">Super</kbd><kbd>1–9</kbd><span class="desc">Workspace</span></div>
+  </div>
+
+  <p class="note">
+    <b>WM token map.</b> <code>active border → iris (#b07bbc)</code> · <code>inactive border → line (#2a2240)</code> · <code>urgent → error (#b97873)</code> · <code>bar bg → bg1</code> · <code>workspace active → iris on bg0</code>. Drops into i3 <code>client.focused</code>, dwm <code>colors[SchemeSel]</code>, bspwm <code>focused_border_color</code>, awesome <code>beautiful.border_focus</code>. dmenu reads four flags: <code>-nb bg1 -nf fg1 -sb bg4 -sf fg0</code> (with prompt forced to iris via <code>-p</code> styling). dunst <code>frame_color</code> swaps to <code>error</code> for the urgency=critical class.
+  </p>
+</section>
+
+<!-- ============================================================ 06 Semantic -->
+<section>
+  <div class="sec-head">
+    <span class="sec-num">06</span>
+    <h2 class="sec-title">Semantic UI roles</h2>
+    <span class="sec-sub">status · feedback · selection</span>
+  </div>
+
+  <div class="role-table">
+    <div class="role-row head">
+      <div></div><div>Role</div><div>Use case</div><div>Hex</div><div>Mapped from</div>
+    </div>
+    <div class="role-row">
+      <div class="chip" style="--swatch:var(--u-success)"></div>
+      <div class="var">--u-success</div>
+      <div class="desc">commits, builds passing, sync complete</div>
+      <div class="hex" data-token="--u-success"></div>
+      <div class="use">ansi · green</div>
+    </div>
+    <div class="role-row">
+      <div class="chip" style="--swatch:var(--u-warn)"></div>
+      <div class="var">--u-warn</div>
+      <div class="desc">low disk, unsaved changes, deprecation</div>
+      <div class="hex" data-token="--u-warn"></div>
+      <div class="use">ansi · yellow</div>
+    </div>
+    <div class="role-row">
+      <div class="chip" style="--swatch:var(--u-error)"></div>
+      <div class="var">--u-error</div>
+      <div class="desc">failed jobs, syntax errors, conflicts</div>
+      <div class="hex" data-token="--u-error"></div>
+      <div class="use">ansi · red</div>
+    </div>
+    <div class="role-row">
+      <div class="chip" style="--swatch:var(--u-info)"></div>
+      <div class="var">--u-info</div>
+      <div class="desc">tooltips, helper text, notices</div>
+      <div class="hex" data-token="--u-info"></div>
+      <div class="use">ansi · blue</div>
+    </div>
+    <div class="role-row">
+      <div class="chip" style="--swatch:var(--u-accent)"></div>
+      <div class="var">--u-accent</div>
+      <div class="desc">focus ring, links, primary CTAs</div>
+      <div class="hex" data-token="--u-accent"></div>
+      <div class="use">accent · iris</div>
+    </div>
+    <div class="role-row">
+      <div class="chip" style="--swatch:var(--u-selection)"></div>
+      <div class="var">--u-selection</div>
+      <div class="desc">text selection, list row active</div>
+      <div class="hex" data-token="--u-selection"></div>
+      <div class="use">bg4</div>
+    </div>
+  </div>
+
+  <p class="note">
+    <b>Where to deploy.</b> GTK theming maps directly: <code>@accent_bg_color → iris</code>, <code>@destructive_color → error</code>, <code>@success_color → success</code>, <code>@window_bg_color → bg1</code>, <code>@view_bg_color → bg0</code>, <code>@headerbar_bg_color → bg2</code>. The same six tokens drop into Hyprland borders, Waybar modules, dunst urgency levels and Rofi state.
+  </p>
+</section>
+
+<footer>
+  <span>UMBRA · 0.1 · DRAFT</span>
+  <span>26 swatches · 1 family · all OKLCH-tuned</span>
+</footer>
+
+<!-- ============================================================ React + tweaks panel -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<div id="tweaks-root"></div>
+<script type="text/babel">
+  const { useEffect } = React;
+
+  // OKLCH → hex helpers (sRGB) so live tweaks regenerate the entire family from a hue.
+  function oklchToRgb(L, C, hDeg){
+    const h = hDeg * Math.PI / 180;
+    const a = Math.cos(h) * C;
+    const b = Math.sin(h) * C;
+    let l_ = L + 0.3963377774*a + 0.2158037573*b;
+    let m_ = L - 0.1055613458*a - 0.0638541728*b;
+    let s_ = L - 0.0894841775*a - 1.2914855480*b;
+    const l = l_*l_*l_, m = m_*m_*m_, s = s_*s_*s_;
+    let r =  4.0767416621*l - 3.3077115913*m + 0.2309699292*s;
+    let g = -1.2684380046*l + 2.6097574011*m - 0.3413193965*s;
+    let bl = -0.0041960863*l - 0.7034186147*m + 1.7076147010*s;
+    const conv = x => {
+      x = Math.max(0, Math.min(1, x));
+      return x <= 0.0031308 ? 12.92*x : 1.055*Math.pow(x, 1/2.4) - 0.055;
+    };
+    return [conv(r), conv(g), conv(bl)].map(v => Math.round(v*255));
+  }
+  function toHex(arr){
+    return '#' + arr.map(v => v.toString(16).padStart(2,'0')).join('');
+  }
+  function ok(L, C, h){ return toHex(oklchToRgb(L, C, h)); }
+
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "variant": "dark",
+    "hue": 320,
+    "chroma": 0.11,
+    "contrast": 1,
+    "termFont": "JetBrains Mono"
+  }/*EDITMODE-END*/;
+
+  function applyTheme(t){
+    const r = document.documentElement.style;
+    const H = t.hue;
+    const C = t.chroma;
+    const k = t.contrast;
+    const light = t.variant === 'light';
+
+    if (light) {
+      // ─── LIGHT VARIANT — paper backgrounds, dark fg, darker accents ───
+      // Bg ramp: very light → slightly darker. k > 1 brightens (closer to 1).
+      r.setProperty('--u-bg0', ok(Math.min(0.995, 0.97 * k), 0.006, H));
+      r.setProperty('--u-bg1', ok(Math.min(0.99,  0.95 * k), 0.010, H));
+      r.setProperty('--u-bg2', ok(Math.min(0.97,  0.91 * k), 0.018, H));
+      r.setProperty('--u-bg3', ok(Math.min(0.94,  0.86 * k), 0.030, H));
+      r.setProperty('--u-bg4', ok(Math.min(0.90,  0.80 * k), 0.045, H));
+      r.setProperty('--u-bg5', ok(Math.min(0.82,  0.70 * k), 0.055, H));
+
+      // Fg ramp: dark → lighter
+      r.setProperty('--u-fg0', ok(0.22 / k, 0.045, H));
+      r.setProperty('--u-fg1', ok(0.36 / k, 0.050, H));
+      r.setProperty('--u-fg2', ok(0.52 / k, 0.045, H));
+      r.setProperty('--u-fg3', ok(0.64 / k, 0.040, H));
+
+      // Border tokens (page CSS uses --u-line, --u-line-soft)
+      r.setProperty('--u-line',      ok(Math.min(0.86, 0.78 * k), 0.04, H));
+      r.setProperty('--u-line-soft', ok(Math.min(0.92, 0.86 * k), 0.025, H));
+
+      // Accents — darker for AA contrast on light paper
+      r.setProperty('--u-iris',      ok(0.50, C * 0.95, H));
+      r.setProperty('--u-iris-soft', ok(0.60, C * 0.80, H - 5));
+      r.setProperty('--u-mauve',     ok(0.55, C * 0.95, H + 10));
+      r.setProperty('--u-magenta',   ok(0.50, C,        H + 30));
+
+      // ANSI standard — darkened for legibility
+      r.setProperty('--u-ansi-black',   ok(0.22, 0.04, H));
+      r.setProperty('--u-ansi-red',     ok(0.54, C,        25));
+      r.setProperty('--u-ansi-green',   ok(0.54, C * 0.90, 145));
+      r.setProperty('--u-ansi-yellow',  ok(0.62, C * 0.90, 85));
+      r.setProperty('--u-ansi-blue',    ok(0.54, C * 0.95, 255));
+      r.setProperty('--u-ansi-magenta', ok(0.52, C,        H + 25));
+      r.setProperty('--u-ansi-cyan',    ok(0.58, C * 0.85, 195));
+      r.setProperty('--u-ansi-white',   ok(0.84, 0.025, H));
+
+      // ANSI bright — even darker (more saturated, used for emphasis on light)
+      r.setProperty('--u-ansi-br-black',   ok(0.40, 0.05, H));
+      r.setProperty('--u-ansi-br-red',     ok(0.44, C,        25));
+      r.setProperty('--u-ansi-br-green',   ok(0.44, C * 0.95, 145));
+      r.setProperty('--u-ansi-br-yellow',  ok(0.52, C * 0.95, 85));
+      r.setProperty('--u-ansi-br-blue',    ok(0.44, C,        255));
+      r.setProperty('--u-ansi-br-magenta', ok(0.42, C,        H + 25));
+      r.setProperty('--u-ansi-br-cyan',    ok(0.48, C * 0.90, 195));
+      r.setProperty('--u-ansi-br-white',   ok(0.97, 0.008, H));
+
+      r.setProperty('--u-success', ok(0.50, C * 0.90, 145));
+      r.setProperty('--u-warn',    ok(0.58, C * 0.90, 85));
+      r.setProperty('--u-error',   ok(0.54, C,        25));
+      r.setProperty('--u-info',    ok(0.54, C * 0.95, 255));
+
+      // Page chrome
+      r.setProperty('--page-bg', ok(Math.min(0.99, 0.98 * k), 0.004, H));
+    } else {
+      // ─── DARK VARIANT (default) — Kanagawa Dragon-flavoured: muted, low-chroma ───
+      r.setProperty('--u-bg0', ok(0.13 * k, 0.03, H));
+      r.setProperty('--u-bg1', ok(0.17 * k, 0.035, H));
+      r.setProperty('--u-bg2', ok(0.22 * k, 0.04, H));
+      r.setProperty('--u-bg3', ok(0.27 * k, 0.045, H));
+      r.setProperty('--u-bg4', ok(0.33 * k, 0.05, H));
+      r.setProperty('--u-bg5', ok(0.40 * k, 0.055, H));
+
+      r.setProperty('--u-fg0', ok(Math.min(0.88, 0.85 / k + 0.02), 0.015, H));
+      r.setProperty('--u-fg1', ok(0.74, 0.020, H));
+      r.setProperty('--u-fg2', ok(0.60, 0.030, H));
+      r.setProperty('--u-fg3', ok(0.47, 0.035, H));
+
+      r.setProperty('--u-line',      ok(0.20 * k, 0.035, H));
+      r.setProperty('--u-line-soft', ok(0.16 * k, 0.030, H));
+
+      // Accents — lower L, lower chroma; feels like ink on slate
+      r.setProperty('--u-iris',      ok(0.66, C,        H));
+      r.setProperty('--u-iris-soft', ok(0.56, C * 0.80, H - 5));
+      r.setProperty('--u-mauve',     ok(0.72, C * 0.85, H + 10));
+      r.setProperty('--u-magenta',   ok(0.62, C * 0.95, H + 30));
+
+      // ANSI standard — dragon-muted (chroma well under 0.10, L around 0.62–0.72)
+      r.setProperty('--u-ansi-black',   ok(0.18 * k, 0.03, H));
+      r.setProperty('--u-ansi-red',     ok(0.64, C * 0.75, 25));
+      r.setProperty('--u-ansi-green',   ok(0.72, C * 0.55, 145));
+      r.setProperty('--u-ansi-yellow',  ok(0.74, C * 0.60, 80));
+      r.setProperty('--u-ansi-blue',    ok(0.68, C * 0.65, 235));
+      r.setProperty('--u-ansi-magenta', ok(0.66, C * 0.75, H + 25));
+      r.setProperty('--u-ansi-cyan',    ok(0.72, C * 0.50, 195));
+      r.setProperty('--u-ansi-white',   ok(0.74, 0.020, H));
+
+      // Bright = a notch up, still muted
+      r.setProperty('--u-ansi-br-black',   ok(0.32, 0.04, H));
+      r.setProperty('--u-ansi-br-red',     ok(0.72, C * 0.80, 25));
+      r.setProperty('--u-ansi-br-green',   ok(0.80, C * 0.50, 145));
+      r.setProperty('--u-ansi-br-yellow',  ok(0.82, C * 0.55, 80));
+      r.setProperty('--u-ansi-br-blue',    ok(0.76, C * 0.65, 235));
+      r.setProperty('--u-ansi-br-magenta', ok(0.74, C * 0.80, H + 25));
+      r.setProperty('--u-ansi-br-cyan',    ok(0.80, C * 0.48, 195));
+      r.setProperty('--u-ansi-br-white',   ok(0.88, 0.015, H));
+
+      r.setProperty('--u-success', ok(0.72, C * 0.55, 145));
+      r.setProperty('--u-warn',    ok(0.74, C * 0.60, 80));
+      r.setProperty('--u-error',   ok(0.64, C * 0.75, 25));
+      r.setProperty('--u-info',    ok(0.68, C * 0.65, 235));
+
+      r.setProperty('--page-bg', ok(0.07, 0.018, H));
+    }
+
+    r.setProperty('--type-mono', `"${t.termFont}", ui-monospace, monospace`);
+
+    // Mark variant on <html> for CSS-only adjustments
+    document.documentElement.dataset.variant = t.variant;
+
+    // After CSS variables settle, walk swatches & chips and:
+    //  1. write hex values into [data-token] elements
+    //  2. set --label on each swatch to whichever of bg0/fg0 contrasts better
+    requestAnimationFrame(() => {
+      const cs = getComputedStyle(document.documentElement);
+      const rgbToHex = (rgb) => {
+        const m = rgb.match(/\d+(\.\d+)?/g);
+        if (!m || m.length < 3) return rgb;
+        return '#' + m.slice(0, 3).map(n =>
+          Math.round(+n).toString(16).padStart(2, '0')
+        ).join('');
+      };
+
+      // Populate [data-token] elements with current hex of that var
+      document.querySelectorAll('[data-token]').forEach(el => {
+        const tok = el.dataset.token;
+        const v = cs.getPropertyValue(tok).trim();
+        if (v) el.textContent = v;
+      });
+
+      // Compute label color per swatch from its computed bg luminance
+      const fg = cs.getPropertyValue('--u-fg0').trim();
+      const bg = cs.getPropertyValue('--u-bg0').trim();
+      document.querySelectorAll('.swatch').forEach(sw => {
+        const bgC = getComputedStyle(sw).backgroundColor;
+        const m = bgC.match(/\d+(\.\d+)?/g);
+        if (!m) return;
+        const [rC, gC, bC] = m.slice(0, 3).map(Number);
+        // Perceived luminance (sRGB approx, no gamma)
+        const lum = (0.2126 * rC + 0.7152 * gC + 0.0722 * bC) / 255;
+        sw.style.setProperty('--label', lum > 0.55 ? fg : bg);
+        // Auto-update the swatch's hex text from its actual bg color
+        const hexEl = sw.querySelector('.hex');
+        if (hexEl && !hexEl.dataset.token) hexEl.textContent = rgbToHex(bgC);
+      });
+    });
+  }
+
+  function App(){
+    const [tweaks, setTweak] = window.useTweaks(TWEAK_DEFAULTS);
+    useEffect(() => { applyTheme(tweaks); }, [tweaks]);
+
+    return (
+      <window.TweaksPanel title="Tweaks">
+        <window.TweakSection title="Variant">
+          <window.TweakRadio label="Mode"
+            options={[
+              { label: "Dark", value: "dark" },
+              { label: "Light", value: "light" },
+            ]}
+            value={tweaks.variant}
+            onChange={v => setTweak('variant', v)} />
+        </window.TweakSection>
+
+        <window.TweakSection title="Hue & chroma">
+          <window.TweakSlider label="Base hue" min={0} max={360} step={1} unit="°"
+            value={tweaks.hue} onChange={v => setTweak('hue', v)} />
+          <window.TweakSlider label="Chroma" min={4} max={30} step={1} unit="%"
+            value={Math.round(tweaks.chroma*100)} onChange={v => setTweak('chroma', v/100)} />
+          <window.TweakSlider label="Contrast" min={70} max={140} step={2} unit="%"
+            value={Math.round(tweaks.contrast*100)} onChange={v => setTweak('contrast', v/100)} />
+        </window.TweakSection>
+
+        <window.TweakSection title="Terminal">
+          <window.TweakRadio label="Mono font"
+            options={[
+              { label: "JetBrains", value: "JetBrains Mono" },
+              { label: "Plex", value: "IBM Plex Mono" },
+            ]}
+            value={tweaks.termFont}
+            onChange={v => setTweak('termFont', v)} />
+        </window.TweakSection>
+
+        <div style={{
+          padding: '12px 14px',
+          fontSize: 11,
+          color: 'var(--u-fg2)',
+          fontFamily: 'var(--type-mono)',
+          lineHeight: 1.6,
+          borderTop: '1px solid var(--u-line)',
+        }}>
+          Slide the hue around 280–310 for classic dark-purple; try 260 for indigo or 320 for plum. Chroma controls how saturated everything reads; contrast scales background lightness.
+        </div>
+      </window.TweaksPanel>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<App />);
+</script>
+
+<!-- preload Plex Mono so tweak switch is instant -->
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</body>
+</html>
